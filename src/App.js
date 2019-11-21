@@ -17,6 +17,7 @@ class App extends React.Component {
 
   // show login form
   showLogin = () => {
+    // switch the state of each
     this.setState({
       login: true,
       register: false
@@ -25,6 +26,7 @@ class App extends React.Component {
 
   // show the register form
   showRegister = () => {
+    // switch the state of each
     this.setState({
       login: false,
       register: true
@@ -35,9 +37,11 @@ class App extends React.Component {
     return (
       <div>
         <button onClick={this.showLogin}>
+          {this.state.login ? <Login /> : null}
           <h3>Login</h3>
         </button>
         <button onClick={this.showRegister}>
+          {this.state.register ? <Register /> : null}
           <h3>Register</h3>
         </button>
       </div>
