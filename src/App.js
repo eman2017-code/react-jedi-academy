@@ -3,6 +3,7 @@ import "./App.css";
 import Login from "./Login";
 import Register from "./Register";
 import AdminShowAllCourses from "./AdminShowAllCourses"
+import AdminMainPage from "./AdminMainPage"
 
 class App extends React.Component {
   constructor() {
@@ -66,7 +67,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-      {this.state.loggedIn ? <AdminShowAllCourses /> : null}
+      {this.state.loggedIn ? <AdminMainPage /> : null}
       </div>
     );
   }
