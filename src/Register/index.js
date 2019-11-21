@@ -15,6 +15,7 @@ class Register extends Component {
   render() {
     return (
       <div>
+        <h1>Register Form</h1>
         <Form>
           <Form.Group>
             <Form.Input
