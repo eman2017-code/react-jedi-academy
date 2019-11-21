@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Login from "./Login";
 import Register from "./Register";
+import AdminShowAllCourses from "./AdminShowAllCourses"
 
 class App extends React.Component {
   constructor() {
@@ -65,14 +66,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.showLogin}>
-          {this.state.login ? <Login /> : null}
-          <h3>Login</h3>
-        </button>
-        <button onClick={this.showRegister} className="register">
-          {this.state.register ? <Register /> : null}
-          <h3>Register</h3>
-        </button>
+      {this.state.loggedIn ? <AdminShowAllCourses /> : null}
       </div>
     );
   }
