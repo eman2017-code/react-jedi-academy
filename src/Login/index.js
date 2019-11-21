@@ -16,18 +16,16 @@ class Login extends Component {
     return (
       <div>
         <Form>
-          <Form.Group widths="equal">
+          <Form.Group>
             <Form.Input
-              fluid
-              id="form-subcomponent-shorthand-input-first-name"
-              label="First name"
-              placeholder="First name"
+              type="text"
+              label="Full name"
+              placeholder="Enter Full Name"
             />
             <Form.Input
-              fluid
-              id="form-subcomponent-shorthand-input-last-name"
-              label="Last name"
-              placeholder="Last name"
+              type="password"
+              label="Password"
+              placeholder="Enter Password"
             />
           </Form.Group>
         </Form>

@@ -11,24 +11,17 @@ class Register extends Component {
     return (
       <div>
         <Form>
-          <Form.Group widths="equal">
+          <Form.Group>
             <Form.Input
-              fluid
-              id="form-subcomponent-shorthand-input-first-name"
+              type="text"
               label="Full name"
-              placeholder="First name"
+              placeholder="Enter First Name"
             />
+            <Form.Input type="text" label="Email" placeholder="Enter Email" />
             <Form.Input
-              fluid
-              id="form-subcomponent-shorthand-input-last-name"
-              label="Email"
-              placeholder="Last name"
-            />
-            <Form.Input
-              fluid
-              id="form-subcomponent-shorthand-input-last-name"
+              type="password"
               label="Password"
-              placeholder="Last name"
+              placeholder="Enter Password"
             />
           </Form.Group>
         </Form>
