@@ -40,7 +40,7 @@ class App extends React.Component {
           {this.state.login ? <Login /> : null}
           <h3>Login</h3>
         </button>
-        <button onClick={this.showRegister}>
+        <button onClick={this.showRegister} className="register">
           {this.state.register ? <Register /> : null}
           <h3>Register</h3>
         </button>
