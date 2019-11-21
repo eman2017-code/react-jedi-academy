@@ -7,6 +7,11 @@ class Register extends Component {
 
     this.state = {};
   }
+
+  // create method to handle change
+
+  // create method to handle submit
+
   render() {
     return (
       <div>
