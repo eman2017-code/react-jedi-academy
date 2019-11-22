@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.css";
 // import Register from "./Register";
-import LoginRegister from "./LoginRegister";
+import Login from "./Login";
 
 class App extends React.Component {
   constructor() {
@@ -45,7 +45,7 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <LoginRegister login={this.login} />
+        <Login login={this.login} />
       </div>
     );
   }

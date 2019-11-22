@@ -1,13 +1,15 @@
 import React, { Component } from "react";
 import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
+import Register from "../Register";
 
-class LoginRegisterFunction extends Component {
+class Login extends Component {
   constructor() {
     super();
 
     this.state = {
       full_name: "",
       password: "",
+      signUpModal: false,
       action: "login"
     };
   }
@@ -34,6 +36,32 @@ class LoginRegisterFunction extends Component {
       password: this.state.password
     });
   };
+
+  // method to show the modal
+  showModal = () => {
+    this.setState({
+      signUpModal: true
+    });
+  };
+  // ModalExampleCloseIcon = () => (
+  //   <Modal trigger={<Button>Show Modal</Button>} closeIcon>
+  //     <Header icon="archive" content="Archive Old Messages" />
+  //     <Modal.Content>
+  //       <p>
+  //         Your inbox is getting full, would you like us to enable automatic
+  //         archiving of old messages?
+  //       </p>
+  //     </Modal.Content>
+  //     <Modal.Actions>
+  //       <Button color="red">
+  //         <Icon name="remove" /> No
+  //       </Button>
+  //       <Button color="green">
+  //         <Icon name="checkmark" /> Yes
+  //       </Button>
+  //     </Modal.Actions>
+  //   </Modal>
+  // );
 
   render() {
     return (
@@ -67,7 +95,17 @@ class LoginRegisterFunction extends Component {
           </Grid.Column>
 
           <Grid.Column verticalAlign="middle">
-            <Button content="Sign up" icon="signup" size="big" />
+            {/* <Button content="Sign up" icon="signup" size="big"></Button> */}
+            <h4
+              onClick={this.showModal}
+              // content="Sign up"
+              // icon="signup"
+              // size="big"
+            >
+              {" "}
+              Sign Up
+              {this.state.signUpModal ? <Register /> : null}
+            </h4>
           </Grid.Column>
         </Grid>
 
@@ -77,4 +115,4 @@ class LoginRegisterFunction extends Component {
   }
 }
 
-export default LoginRegisterFunction;
+export default Login;
