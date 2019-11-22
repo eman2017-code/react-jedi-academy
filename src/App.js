@@ -64,8 +64,7 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
-    console.log(parsedLoginResponse);
-
+    // if the reponse is good
     if (parsedLoginResponse.status.code === 200) {
       this.setState({
         loggedIn: true,

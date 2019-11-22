@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Card, Image, Icon, Header } from "semantic-ui-react";
+import PadawanShowCourse from "../PadawanShowCourse";
 // import PadawanShowCourse from "../PadawanShowCourse";
 
 class PadawanCourseList extends Component {
@@ -7,7 +8,8 @@ class PadawanCourseList extends Component {
     super(props);
 
     this.state = {
-      courses: []
+      courses: [],
+      showCourse: false
     };
   }
 
@@ -21,19 +23,23 @@ class PadawanCourseList extends Component {
         }
       );
       const parsedResponse = await response.json();
-      console.log("this is the parsed response");
+      console.log("this is the parsed response -- padawans classes");
       console.log(parsedResponse);
       // if the response is cleared
       if (parsedResponse.status.code === 200) {
         this.setState({
-          courses: parsedResponse.data
+          courses: parsedResponse.data,
+          showCourse: true
         });
       }
+      console.log(this.state.courses);
       // otherwise, give them an error
     } catch (err) {
       console.log(err);
     }
   };
+
+  // show the courses on the screen that the padawan is taking
 
   render() {
     return (
@@ -68,6 +74,11 @@ class PadawanCourseList extends Component {
               </Button>
             </Card.Content>
           </Card>
+        </div>
+        <div>
+          {this.state.showCourse ? (
+            <PadawanShowCourse padawanCourses={this.state.courses} />
+          ) : null}
         </div>
       </div>
     );

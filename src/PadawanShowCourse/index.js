@@ -1,102 +1,23 @@
 import React, { Component } from "react";
-import { Modal, Button, Image, Icon, Header } from "semantic-ui-react";
+import { Modal, Button, Image, Icon, Header, Card } from "semantic-ui-react";
 
-class PadawanShowCourse extends Component {
-  constructor() {
-    super();
+function PadawanShowCourse(props) {
+  console.log("this is props in PadawanShowCourse component >>> ", props);
 
-    this.state = {
-      PadawanShowCourse: PadawanShowCourse.PadawanShowCourse
-    };
-  }
-  render() {
+  const padawanCourses = props.padawanCourses.map(padawanCourse => {
     return (
-      <Modal>
-        <Modal.Header>Profile Picture</Modal.Header>
-        <Modal.Content image scrolling>
-          <Image
-            size="medium"
-            src="https://react.semantic-ui.com/images/wireframe/image.png"
-            wrapped
-          />
-
-          <Modal.Description>
-            <Header>Modal Header</Header>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Laudantium, doloribus sunt amet quasi veniam maiores, cumque
-              saepe, repellat eligendi magnam laboriosam fugit dicta
-              consequuntur aspernatur ex ipsam odio minus quae. Lorem ipsum
-              dolor sit amet consectetur adipisicing elit. Laudantium, doloribus
-              sunt amet quasi veniam maiores, cumque saepe, repellat eligendi
-              magnam laboriosam fugit dicta consequuntur aspernatur ex ipsam
-              odio minus quae. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Laudantium, doloribus sunt amet quasi veniam
-              maiores, cumque saepe, repellat eligendi magnam laboriosam fugit
-              dicta consequuntur aspernatur ex ipsam odio minus quae. Lorem
-              ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
-              doloribus sunt amet quasi veniam maiores, cumque saepe, repellat
-              eligendi magnam laboriosam fugit dicta consequuntur aspernatur ex
-              ipsam odio minus quae. Lorem ipsum dolor sit amet consectetur
-              adipisicing elit. Laudantium, doloribus sunt amet quasi veniam
-              maiores, cumque saepe, repellat eligendi magnam laboriosam fugit
-              dicta consequuntur aspernatur ex ipsam odio minus quae.
-            </p>
-          </Modal.Description>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button primary>
-            Proceed <Icon name="chevron right" />
-          </Button>
-        </Modal.Actions>
-      </Modal>
+      <Card key={padawanCourse.id}>
+        <Card.Content>
+          <Card.Header>{padawanCourse.course_id.title}</Card.Header>
+          <Card.Header>{padawanCourse.course_id.description}</Card.Header>
+        </Card.Content>
+        {/* <Card.Content extra>
+          <Button>View Course</Button>
+        </Card.Content> */}
+      </Card>
     );
-  }
+  });
+  return <Card.Group>{padawanCourses}</Card.Group>;
 }
-
-// function PadawanShowCourse() {
-//   return (
-{
-  /* <Modal>
-  <Modal.Header>Profile Picture</Modal.Header>
-  <Modal.Content image scrolling>
-    <Image
-      size="medium"
-      src="https://react.semantic-ui.com/images/wireframe/image.png"
-      wrapped
-    />
-
-    <Modal.Description>
-      <Header>Modal Header</Header>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
-        doloribus sunt amet quasi veniam maiores, cumque saepe, repellat
-        eligendi magnam laboriosam fugit dicta consequuntur aspernatur ex ipsam
-        odio minus quae. Lorem ipsum dolor sit amet consectetur adipisicing
-        elit. Laudantium, doloribus sunt amet quasi veniam maiores, cumque
-        saepe, repellat eligendi magnam laboriosam fugit dicta consequuntur
-        aspernatur ex ipsam odio minus quae. Lorem ipsum dolor sit amet
-        consectetur adipisicing elit. Laudantium, doloribus sunt amet quasi
-        veniam maiores, cumque saepe, repellat eligendi magnam laboriosam fugit
-        dicta consequuntur aspernatur ex ipsam odio minus quae. Lorem ipsum
-        dolor sit amet consectetur adipisicing elit. Laudantium, doloribus sunt
-        amet quasi veniam maiores, cumque saepe, repellat eligendi magnam
-        laboriosam fugit dicta consequuntur aspernatur ex ipsam odio minus quae.
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium,
-        doloribus sunt amet quasi veniam maiores, cumque saepe, repellat
-        eligendi magnam laboriosam fugit dicta consequuntur aspernatur ex ipsam
-        odio minus quae.
-      </p>
-    </Modal.Description>
-  </Modal.Content>
-  <Modal.Actions>
-    <Button primary>
-      Proceed <Icon name="chevron right" />
-    </Button>
-  </Modal.Actions>
-</Modal>; */
-}
-//   );
-// }
 
 export default PadawanShowCourse;
