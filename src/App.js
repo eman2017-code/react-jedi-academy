@@ -32,7 +32,7 @@ class App extends React.Component {
     const parsedLoginResponse = await response.json();
 
     if (parsedLoginResponse.status.code === 200) {
-      console.log("you are not logged in");
+      console.log("you are now logged in");
       this.setState({
         loggedIn: true
       });

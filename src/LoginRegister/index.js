@@ -6,7 +6,7 @@ class LoginRegisterFunction extends Component {
     super();
 
     this.state = {
-      fullName: "",
+      full_name: "",
       password: "",
       action: "login"
     };
@@ -30,7 +30,7 @@ class LoginRegisterFunction extends Component {
   loginPadawan = () => {
     // we are passing in login in the App.js
     this.props.login({
-      fullName: this.state.fullName,
+      full_name: this.state.full_name,
       password: this.state.password
     });
   };
@@ -46,9 +46,9 @@ class LoginRegisterFunction extends Component {
                 iconPosition="left"
                 type="text"
                 label="Full Name"
-                name="fullName"
+                name="full_name"
                 placeholder="Full Name"
-                value={this.state.fullName}
+                value={this.state.full_name}
                 onChange={this.handleChange}
               />
               <Form.Input
