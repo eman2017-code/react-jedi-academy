@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AdminShowAllStudents from '../AdminShowAllStudents';
-import CourseList from './CourseList';
+import CourseList from '../AdminShowAllCourses';
 
 
 class AdminContainer extends Component {
@@ -42,6 +42,8 @@ class AdminContainer extends Component {
 		try {
 			const courses = await fetch(process.env.REACT_APP_API_URL + '/api/v1/courses/');
 			const parsedCourses = await courses.json();
+			console.log(parsedCourses);
+			
 			this.setState({
 				courses: parsedCourses.data
 			})
