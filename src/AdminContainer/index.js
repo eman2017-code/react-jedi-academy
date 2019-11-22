@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import AdminShowAllStudents from '../AdminShowAllStudents';
+import CourseList from './CourseList';
 
 
 class AdminContainer extends Component {
@@ -7,7 +8,8 @@ class AdminContainer extends Component {
 		super(props)
 
 		this.state = {
-			padawans: []
+			padawans: [],
+			courses: []
 
 		}
 	}
@@ -16,6 +18,7 @@ class AdminContainer extends Component {
 		this.getStudents();
 		this.getCourses();
 	}
+
 	getStudents = async () => {
 
 		try{
@@ -33,11 +36,27 @@ class AdminContainer extends Component {
 		}
 		
 	}
+	getCourses = async () => {
+
+		try {
+			const courses = await fetch(process.env.REACT_APP_API_URL + '/api/v1/courses/');
+			const parsedCourses = await courses.json();
+			this.setState({
+				courses: parsedCourses.data
+			})
+			
+		}
+		catch (err) {
+			console.log(err)
+		}
+		
+	}
 
 	render(){
 		return(
 
 			<AdminShowAllStudents padawans={this.state.padawans} />
+			<CourseList />
 			
 			)
 	}
