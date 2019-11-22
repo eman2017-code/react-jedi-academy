@@ -113,7 +113,7 @@ class App extends React.Component {
     return (
       <div className="App">
         {this.state.loggedIn ? (
-          <AdminContainer loggedInPadawan={this.state.loggedInPadawan} />
+          <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} />
         ) : (
           <Login login={this.login} />
         )}
