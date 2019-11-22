@@ -1,29 +1,51 @@
 import React, { Component } from "react";
 import { Button, Card, Image, Icon, Header } from "semantic-ui-react";
-import PadawanShowCourse from "../PadawanShowCourse";
+// import PadawanShowCourse from "../PadawanShowCourse";
 
 class PadawanCourseList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showCourseModal: false
+      courses: []
+      // we need to get the id of the user so that we are able to interpolate it
     };
   }
 
-  // create a function that will show all the courses that a student has
-  openCourses = () => {
-    this.setState({
-      showCourseModal: true
-    });
+  // create a method that will get all the courses that a user is in
+  getCoursesPadawanIsIn = async e => {
+    console.log("this.courses");
+    console.log(this.state.courses);
+    try {
+      const response = await fetch(
+        process.env.REACT_APP_API_URL + "/api/v1/padawans/" + e,
+        {
+          method: "GET",
+          credentials: "include",
+          body: JSON.stringify(this.state.courses),
+          headers: {
+            "Content-type": "application/json"
+          }
+        }
+      );
+      const parsedResponse = await response.json();
+      console.log("this is the parsed response");
+      console.log(parsedResponse);
+      // if the response is cleared
+      if (parsedResponse.status.code === 200) {
+        this.setState({
+          courses: parsedResponse.data
+        });
+      }
+      // otherwise, give them an error
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   render() {
     return (
       <div>
-        <div>
-          <PadawanShowCourse showCourseModal={this.state.showCourseModal} />
-        </div>
         <div>
           <Header as="h2">
             <Image
@@ -48,7 +70,7 @@ class PadawanCourseList extends Component {
               <Card.Description>Young Jedi in training</Card.Description>
             </Card.Content>
             <Card.Content extra>
-              <Button onClick={this.openCourses}>
+              <Button onClick={this.getCoursesPadawanIsIn}>
                 <Icon name="book" />
                 View Classes
               </Button>
