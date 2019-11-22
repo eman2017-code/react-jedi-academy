@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
-import Register from "../Register";
+import { Button, Form, Grid, Segment } from "semantic-ui-react";
+// import Register from "../Register";
 import PadawanDashboard from "../PadawanDashboard";
 
 class Login extends Component {
@@ -9,9 +9,10 @@ class Login extends Component {
 
     this.state = {
       full_name: "",
+      email: "",
       password: "",
       loggedIn: false,
-      signUpModal: false,
+      // signUpModal: false,
       action: "login"
     };
   }
@@ -31,19 +32,25 @@ class Login extends Component {
     this.loginPadawan();
   };
 
+  // method to login in the padawan
   loginPadawan = () => {
     // we are passing in login in the App.js
     this.props.login({
       full_name: this.state.full_name,
       password: this.state.password
     });
+    console.log("you are now logged in");
   };
 
-  // method to show the modal
-  showModal = () => {
-    this.setState({
-      signUpModal: true
+  // method to register the padawan
+  registerPadawan = () => {
+    // we are passing in login in the Login.js
+    this.props.register({
+      full_name: this.state.full_name,
+      email: this.state.email,
+      password: this.state.password
     });
+    console.log("you are now registered");
   };
 
   render() {
@@ -80,18 +87,66 @@ class Login extends Component {
                 </Form>
               </Grid.Column>
 
-              <Grid.Column verticalAlign="middle">
-                {/* <Button content="Sign up" icon="signup" size="big"></Button>
-                <h3 onClick={this.showModal}>
-                  Sign Up
-                  {this.state.signUpModal ? (
-                    <Register register={this.register} />
-                  ) : null}
-                </h3> */}
-              </Grid.Column>
+              <Grid.Column verticalAlign="middle"></Grid.Column>
             </Grid>
+          </Segment>
+        </div>
 
-            <Divider vertical>Or</Divider>
+        <div>
+          <form>
+            <input
+              value={this.state.full_name}
+              onChange={this.handleChange}
+            ></input>
+            <input
+              value={this.state.full_name}
+              onChange={this.handleChange}
+            ></input>
+            <input
+              value={this.state.full_name}
+              onChange={this.handleChange}
+            ></input>
+          </form>
+
+          <Segment placeholder>
+            <Grid columns={2} relaxed="very" stackable>
+              <Grid.Column>
+                <Form onSubmit={this.handleSubmit}>
+                  <Form.Input
+                    type="text"
+                    name="full_name"
+                    placeholder="Full Name"
+                    label="Full Name"
+                    value={this.state.full_name}
+                    onChange={this.handleChange}
+                  />
+                  <Form.Input
+                    type="Email"
+                    name="email"
+                    placeholder="Email"
+                    label="Email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                  <Form.Input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    label="Password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+
+                  <Button
+                    content="Register"
+                    primary
+                    onClick={this.registerPadawan}
+                  />
+                </Form>
+              </Grid.Column>
+
+              <Grid.Column verticalAlign="middle"></Grid.Column>
+            </Grid>
           </Segment>
         </div>
       </div>
