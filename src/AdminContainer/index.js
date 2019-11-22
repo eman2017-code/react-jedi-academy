@@ -24,11 +24,13 @@ class AdminContainer extends Component {
 
 		try{
 
-			const padawans = await fetch(process.env.REACT_APP_API_URL + '/api/v1/padawans', {
+			const padawans = await fetch(process.env.REACT_APP_API_URL + '/api/v1/padawans/', {
 				credentials: "include"
-			})
+			});
 			const parsedPadawans = await padawans.json();
 			console.log(parsedPadawans);
+
+
 
 			this.setState({
 				padawans: parsedPadawans.data 

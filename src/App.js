@@ -15,7 +15,7 @@ class App extends React.Component {
 
       // being logged in will initially be false
       loggedIn: false,
-      loggedInPadawan: null,
+      loggedInPadawan: null
 
       // initially register will be false
       // register: false
@@ -41,7 +41,7 @@ class App extends React.Component {
     if (parsedLoginResponse.status.code === 201) {
       this.setState({
         loggedIn: true,
-        loggedInPadawan: parsedLoginResponse.data.full_name
+        // loggedInPadawan: parsedLoginResponse.data.full_name
       });
     } else {
       console.log("Registration Failed:");
@@ -113,11 +113,10 @@ class App extends React.Component {
     return (
       <div className="App">
         {this.state.loggedIn ? (
-          <AdminContainer />
+          <AdminContainer loggedInPadawan={this.state.loggedInPadawan} />
         ) : (
           <Login login={this.login} />
         )}
-        
       </div>
 
     );

@@ -1,20 +1,21 @@
 import React, { Component } from "react";
-// import { Form } from "semantic-ui-react";
+import { List } from "semantic-ui-react";
 
 function AdminShowAllStudents(props){
 
+	console.log("this is props in <AdminShowAllStudents/> >>> ", props)
+
 	const padawans = props.padawans.map((padawan) => {
 		return (
-
-			<li key={padawan.id}> {padawan.full_name} </li>
-
+			 
+			<List.Item key={padawan.id}> {padawan.full_name} </List.Item>
 
 		)
 	})
 
 	return(
 
-		<ul> { padawans } </ul>
+		<List bulleted> { padawans } </List>
 
 	)
 }
