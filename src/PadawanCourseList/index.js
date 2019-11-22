@@ -2,19 +2,20 @@ import React, { Component } from "react";
 import { Button, Card, Image, Icon, Header } from "semantic-ui-react";
 
 class PadawanCourseList extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      showCourseModal: false
+      showCourseModal: false,
+      full_name: this.props.full_name
     };
   }
 
   // create a function that will show all the courses that a student has
   openCourses = () => {
-    console.log(
-      "the student has clicked on a button that will open their courses that they are currently taking"
-    );
+    this.setState({
+      showCourseModal: true
+    });
   };
 
   render() {
@@ -40,7 +41,7 @@ class PadawanCourseList extends Component {
               ui={false}
             />
             <Card.Content>
-              <Card.Header>insert the full_name of padawan</Card.Header>
+              <Card.Header>{this.state.full_name}</Card.Header>
               <Card.Description>Young Jedi in training</Card.Description>
             </Card.Content>
             <Card.Content extra>

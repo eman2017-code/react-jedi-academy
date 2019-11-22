@@ -10,7 +10,8 @@ class App extends React.Component {
     super();
     this.state = {
       // being logged in will initially be false
-      loggedIn: true
+      loggedIn: false,
+      loggedInPadawan: null
       // initially register will be false
       // register: false
     };
@@ -34,7 +35,8 @@ class App extends React.Component {
     // if the response is cleared
     if (parsedLoginResponse.status.code === 201) {
       this.setState({
-        loggedIn: true
+        loggedIn: true,
+        loggedInPadawan: parsedLoginResponse.data.full_name
       });
     } else {
       console.log("Registration Failed:");
@@ -58,10 +60,12 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
+    console.log(parsedLoginResponse);
 
     if (parsedLoginResponse.status.code === 200) {
       this.setState({
-        loggedIn: true
+        loggedIn: true,
+        loggedInPadawan: parsedLoginResponse.data
       });
     } else {
       console.log(parsedLoginResponse);
@@ -98,7 +102,7 @@ class App extends React.Component {
     return (
       <div className="App">
         {this.state.loggedIn ? (
-          <PadawanDashboard />
+          <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} />
         ) : (
           <Login login={this.login} />
         )}
