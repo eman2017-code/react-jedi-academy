@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import AdminShowAllStudents from '../AdminShowAllStudents';
 import AdminShowAllCourses from '../AdminShowAllCourses';
-import AdminAddClass from '../AdminAddClass';
+import AdminAddCourse from '../AdminAddCourse';
 import { Button } from "semantic-ui-react";
 
 
@@ -12,7 +12,7 @@ class AdminContainer extends Component {
 		this.state = {
 			padawans: [],
 			courses: [],
-			addClass: false
+			addCourse: false
 
 		}
 	}
@@ -65,13 +65,6 @@ class AdminContainer extends Component {
 		
 	};
 
-	// make a function that will show the add class
-	addClass = () => {
-		this.setState({
-			addclass: true
-		})
-	}
-
 	deleteCourse = async (id) =>{
 
 		const deleteCourseResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/courses/' + id, { method: 'DELETE' });
@@ -82,18 +75,17 @@ class AdminContainer extends Component {
 
 	}
 
+	
 	render(){
 		return(
 			<div>
-				{this.state.addClass ? <AdminAddClass /> : null}
+			<div>{this.state.addCourse ? <AdminAddCourse/> : null}</div>
+				
 				<AdminShowAllStudents padawans={this.state.padawans} />
 				<AdminShowAllCourses courses={this.state.courses} deleteCourse={this.deleteCourse} />
-				<Button onClick={this.addClass}>Add Class</Button>
-
-				
+				<Button onClick={this.addCourse}>Add A Course</Button>
 			</div> 
-
-			)
+		)
 	}
 
 
