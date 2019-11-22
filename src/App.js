@@ -15,7 +15,7 @@ class App extends React.Component {
 
       // being logged in will initially be false
       loggedIn: false,
-      loggedInPadawan: null
+      loggedInPadawan: null,
 
       // initially register will be false
       // register: false
@@ -113,12 +113,13 @@ class App extends React.Component {
     return (
       <div className="App">
         {this.state.loggedIn ? (
-          <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} />
+          <AdminContainer />
         ) : (
           <Login login={this.login} />
         )}
-    
+        
       </div>
+
     );
   }
 }

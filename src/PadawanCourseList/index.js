@@ -41,7 +41,7 @@ class PadawanCourseList extends Component {
               ui={false}
             />
             <Card.Content>
-              <Card.Header>{this.props.loggedInPadawan.full_name}</Card.Header>
+
               <Card.Description>Young Jedi in training</Card.Description>
             </Card.Content>
             <Card.Content extra>

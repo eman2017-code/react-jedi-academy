@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import AdminShowAllStudents from '../AdminShowAllStudents';
 import AdminShowAllCourses from '../AdminShowAllCourses';
+// import CourseList from './CourseList';
 
 
 class AdminContainer extends Component {
@@ -40,9 +41,12 @@ class AdminContainer extends Component {
 	getCourses = async () => {
 
 		try {
-			const courses = await fetch(process.env.REACT_APP_API_URL + '/api/v1/courses/');
+			const courses = await fetch(process.env.REACT_APP_API_URL + '/api/v1/courses/', {
+				credentials: "include"
+			});
+
 			const parsedCourses = await courses.json();
-			console.log(parsedCourses);
+					console.log(parsedCourses)
 
 			this.setState({
 				courses: parsedCourses.data
@@ -50,10 +54,10 @@ class AdminContainer extends Component {
 			
 		}
 		catch (err) {
-			console.log(err)
+		console.log(err)
 		}
 		
-	}
+	};
 
 	render(){
 		return(
