@@ -6,8 +6,8 @@ class PadawanCourseList extends Component {
     super(props);
 
     this.state = {
-      showCourseModal: false,
-      full_name: this.props.full_name
+      showCourseModal: false
+      // full_name: this.props.full_name
     };
   }
 
@@ -41,7 +41,7 @@ class PadawanCourseList extends Component {
               ui={false}
             />
             <Card.Content>
-              <Card.Header>{this.state.full_name}</Card.Header>
+              <Card.Header>{this.props.loggedInPadawan.full_name}</Card.Header>
               <Card.Description>Young Jedi in training</Card.Description>
             </Card.Content>
             <Card.Content extra>
