@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, Card, Image, Icon, Header } from "semantic-ui-react";
+import PadawanShowCourse from "../PadawanShowCourse";
 
 class PadawanCourseList extends Component {
   constructor(props) {
@@ -7,7 +8,6 @@ class PadawanCourseList extends Component {
 
     this.state = {
       showCourseModal: false
-      // full_name: this.props.full_name
     };
   }
 
@@ -21,6 +21,7 @@ class PadawanCourseList extends Component {
   render() {
     return (
       <div>
+        <div>{this.state.showCourseModal ? <PadawanShowCourse /> : null}</div>
         <div>
           <Header as="h2">
             <Image
@@ -41,13 +42,13 @@ class PadawanCourseList extends Component {
               ui={false}
             />
             <Card.Content>
-              <Card.Header>{this.props.loggedInPadawan.full_name}</Card.Header>
+              {/* <Card.Header>{this.props.loggedInPadawan.full_name}</Card.Header> */}
               <Card.Description>Young Jedi in training</Card.Description>
             </Card.Content>
             <Card.Content extra>
               <Button onClick={this.openCourses}>
                 <Icon name="book" />
-                10 Courses
+                View Classes
               </Button>
             </Card.Content>
           </Card>
