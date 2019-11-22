@@ -1,5 +1,6 @@
 import React, { Component } from "react";
-import { Modal, Button, Icon, Form } from "semantic-ui-react";
+import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
+import PadawanDashboard from "../PadawanDashboard";
 
 class Register extends Component {
   constructor() {
@@ -9,6 +10,7 @@ class Register extends Component {
       full_name: "",
       email: "",
       password: "",
+      loggedIn: false,
       action: "register"
     };
   }
@@ -25,10 +27,10 @@ class Register extends Component {
     // this stops the page from trying to send data to the server
     e.preventDefault();
     // invoke the method that will actually log the user in
-    this.loginPadawan();
+    this.registerPadawan();
   };
 
-  RegisterPadawan = () => {
+  registerPadawan = () => {
     // we are passing in login in the Login.js
     this.props.register({
       full_name: this.state.full_name,
@@ -40,40 +42,61 @@ class Register extends Component {
 
   render() {
     return (
-      <Modal trigger={<Button>Join the Academy</Button>} closeIcon>
-        <Modal.Content>
-          <p>Please enter all fields.</p>
-        </Modal.Content>
-        <Modal.Actions>
-          <Form.Input
-            type="text"
-            name="full_name"
-            placeholder="Full Name"
-            label="Full Name"
-            value={this.state.full_name}
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            type="Email"
-            name="email"
-            placeholder="Email"
-            label="Email"
-            value={this.state.email}
-            onChange={this.handleChange}
-          />
-          <Form.Input
-            type="password"
-            name="password"
-            placeholder="Password"
-            label="Password"
-            value={this.state.password}
-            onChange={this.handleChange}
-          />
-          <Button color="green" onClick={this.RegisterPadawan}>
-            <Icon name="checkmark" /> Finished?
-          </Button>
-        </Modal.Actions>
-      </Modal>
+      <div>
+        <div>{this.state.register ? <PadawanDashboard /> : null}</div>
+        <div>
+          <Segment placeholder>
+            <Grid columns={2} relaxed="very" stackable>
+              <Grid.Column>
+                <Form onSubmit={this.handleSubmit}>
+                  <Form.Input
+                    type="text"
+                    name="full_name"
+                    placeholder="Full Name"
+                    label="Full Name"
+                    value={this.state.full_name}
+                    onChange={this.handleChange}
+                  />
+                  <Form.Input
+                    type="Email"
+                    name="email"
+                    placeholder="Email"
+                    label="Email"
+                    value={this.state.email}
+                    onChange={this.handleChange}
+                  />
+                  <Form.Input
+                    type="password"
+                    name="password"
+                    placeholder="Password"
+                    label="Password"
+                    value={this.state.password}
+                    onChange={this.handleChange}
+                  />
+
+                  <Button
+                    content="Register"
+                    primary
+                    onClick={this.registerPadawan}
+                  />
+                </Form>
+              </Grid.Column>
+
+              <Grid.Column verticalAlign="middle">
+                {/* <Button content="Sign up" icon="signup" size="big"></Button>
+                <h3 onClick={this.showModal}>
+                  Sign Up
+                  {this.state.signUpModal ? (
+                    <Register register={this.register} />
+                  ) : null}
+                </h3> */}
+              </Grid.Column>
+            </Grid>
+
+            <Divider vertical>Or</Divider>
+          </Segment>
+        </div>
+      </div>
     );
   }
 }
