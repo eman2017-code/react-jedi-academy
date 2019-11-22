@@ -9,10 +9,37 @@ class Login extends Component {
     this.state = {
       full_name: "",
       password: "",
+      loggedIn: false,
       signUpModal: false,
       action: "login"
     };
   }
+
+  // create register route to be passed into the register component
+  register = async registerInfo => {
+    // we have to fetch this information in the route in our api
+    const response = await fetch(
+      process.env.REACT_APP_API_URL + "/api/v1/padawans/register",
+      {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(registerInfo),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+    const parsedLoginResponse = await response.json();
+    // if the response is cleared
+    if (parsedLoginResponse.status.code === 201) {
+      this.setState({
+        loggedIn: true
+      });
+    } else {
+      console.log("Registration Failed:");
+      console.log(parsedLoginResponse);
+    }
+  };
 
   // create method to handle the change
   handleChange = e => {

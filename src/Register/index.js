@@ -30,7 +30,7 @@ class Register extends Component {
 
   RegisterPadawan = () => {
     // we are passing in login in the Login.js
-    this.setState({
+    this.props.register({
       full_name: this.state.full_name,
       email: this.state.email,
       password: this.state.password
@@ -54,7 +54,7 @@ class Register extends Component {
             onChange={this.handleChange}
           />
           <Form.Input
-            type="email"
+            type="Email"
             name="email"
             placeholder="Email"
             label="Email"
