@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AdminShowAllStudents from '../AdminShowAllStudents';
-import CourseList from '../AdminShowAllCourses';
+import AdminShowAllCourses from '../AdminShowAllCourses';
 
 
 class AdminContainer extends Component {
@@ -57,10 +57,10 @@ class AdminContainer extends Component {
 
 	render(){
 		return(
-
-			<AdminShowAllStudents padawans={this.state.padawans} />
-			<AdminShowAllCourses courses={this.state.courses} />
-			
+			<div> 
+				<AdminShowAllStudents padawans={this.state.padawans} />
+				<AdminShowAllCourses courses={this.state.courses} />
+			</div> 
 			)
 	}
 
