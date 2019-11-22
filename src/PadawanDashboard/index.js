@@ -7,15 +7,10 @@ import {
   Grid,
   Segment
 } from "semantic-ui-react";
+import PadawanCourseList from "../PadawanCourseList";
 
 function PadawanDashboard() {
-  return (
-    <Container>
-      <div>
-        <h2>Inser the padawans full name</h2>
-      </div>
-    </Container>
-  );
+  return <PadawanCourseList />;
 }
 
 export default PadawanDashboard;

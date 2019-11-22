@@ -10,7 +10,7 @@ class App extends React.Component {
     super();
     this.state = {
       // being logged in will initially be false
-      loggedIn: false
+      loggedIn: true
       // initially register will be false
       // register: false
     };
