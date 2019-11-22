@@ -21,6 +21,9 @@ class AdminShowAllStudents extends Component {
 			// })
 
 			// get the students that are registered (enrolled) 
+				// make an AJAX call from react to flask to get the list of all the students 
+				// hit the route the route within in React 
+
 			// loop through all of the students
 			// display them on the screen
 
