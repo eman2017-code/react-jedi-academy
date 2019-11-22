@@ -3,7 +3,8 @@ import "./App.css";
 // import Register from "./Register";
 import Login from "./Login";
 import PadawanDashboard from "./PadawanDashboard";
-// import PadawanDashboard from "./PadawanDashboard";
+import Register from "./Register";
+import AdminShowAllStudents from "./AdminShowAllStudents";
 
 class App extends React.Component {
   constructor() {
