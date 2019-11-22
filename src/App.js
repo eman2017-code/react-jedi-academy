@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 // import Register from "./Register";
 import Login from "./Login";
+import PadawanDashboard from "./PadawanDashboard";
 
 class App extends React.Component {
   constructor() {
@@ -71,7 +72,11 @@ class App extends React.Component {
   render() {
     return (
       <div>
-        <Login login={this.login} />
+        {this.state.loggedIn ? (
+          <PadawanDashboard />
+        ) : (
+          <Login login={this.login} />
+        )}
       </div>
     );
   }

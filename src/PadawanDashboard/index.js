@@ -10,3 +10,5 @@ class PadawanDashboard extends Component {
     return "welcome to the padawan dashbord young jedi";
   }
 }
+
+export default PadawanDashboard;
