@@ -72,14 +72,27 @@ class AdminContainer extends Component {
 		})
 	}
 
+	deleteCourse = async (id) =>{
+
+		const deleteCourseResponse = await fetch(process.env.REACT_APP_API_URL + '/api/v1/courses/' + id, { method: 'DELETE' });
+
+		const deleteCourseParsed = await deleteCourseResponse.json();
+		console.log(deleteCourseParsed);
+		this.setState({courses: this.state.courses.filter((course) => course.id !== id )})
+
+	}
+
 	render(){
 		return(
 			<div>
-			{this.state.addClass ? <AdminAddClass /> : null}
+				{this.state.addClass ? <AdminAddClass /> : null}
 				<AdminShowAllStudents padawans={this.state.padawans} />
-				<AdminShowAllCourses courses={this.state.courses} />
+				<AdminShowAllCourses courses={this.state.courses} deleteCourse={this.deleteCourse} />
 				<Button onClick={this.addClass}>Add Class</Button>
+
+				
 			</div> 
+
 			)
 	}
 

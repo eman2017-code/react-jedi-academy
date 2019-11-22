@@ -11,7 +11,7 @@ function AdminShowAllCourses(props){
           	<Card.Description>{course.description}</Card.Description>  
           </Card.Content>
           <Card.Content extra>
-            <Button>Delete Course</Button>
+            <Button onClick={() => props.deleteCourse(course.id)}>Delete Course</Button>
             <Button>Edit Course</Button>
           </Card.Content>
         </Card>
