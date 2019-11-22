@@ -1,30 +1,46 @@
 import React, { Component } from "react";
-import { Container, Header, List } from "semantic-ui-react";
+import { Container, Header, List, Button, Card } from "semantic-ui-react";
 
-class AdminAllCourses extends Component {
-	constructor(){
+class CourseList extends Component {
+	constructor() {
 		super();
 
 		this.state = {
-			courseName: ""
-		};	
+			course: [],
+			students: []
+		}
 	}
-	
-	render(){
+	//we need a function that loops through all of the courses and displays it in the container below.
+	getCourse = (props) => {
+		const courses  = props.courses.map((course) => {
+			return(
+				<List>{course.title}</List>	
+				)	
+		})	
+	}
+
+	render() {
 		return (
-			<Container>
-				<Header as='h2' icon='book' content='Classes'></Header>
-				<List>
-					<List.Item>Add Class - Should Probably Be A Button</List.Item>
-    				<List.Item>Course 1</List.Item>
-    				<List.Item>Course 2</List.Item>
-    				<List.Item>Course 3</List.Item>
-    				<List.Item>Course 4</List.Item>
-    				<List.Item>Course 5</List.Item>
-  				</List>
-			</Container>
-			)
-	}
+			<div>
+			<Card>
+			<Header>Classes</Header>
+				<Button onClick-={this.addClass}>Add Class</Button>
+				<Container>
+					<p>this is where we need to loop all of the courses that the school offers</p>
+				</Container>
+			</Card>
+
+			<Card>
+				<Header>Students</Header>
+				<Container>
+				</Container>
+			</Card>
+		</div>
+		)
+	}	
 }
 
-export default AdminAllCourses;
+
+
+
+export default CourseList;
