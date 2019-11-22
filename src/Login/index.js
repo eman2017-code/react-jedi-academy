@@ -43,25 +43,6 @@ class Login extends Component {
       signUpModal: true
     });
   };
-  // ModalExampleCloseIcon = () => (
-  //   <Modal trigger={<Button>Show Modal</Button>} closeIcon>
-  //     <Header icon="archive" content="Archive Old Messages" />
-  //     <Modal.Content>
-  //       <p>
-  //         Your inbox is getting full, would you like us to enable automatic
-  //         archiving of old messages?
-  //       </p>
-  //     </Modal.Content>
-  //     <Modal.Actions>
-  //       <Button color="red">
-  //         <Icon name="remove" /> No
-  //       </Button>
-  //       <Button color="green">
-  //         <Icon name="checkmark" /> Yes
-  //       </Button>
-  //     </Modal.Actions>
-  //   </Modal>
-  // );
 
   render() {
     return (
@@ -96,16 +77,12 @@ class Login extends Component {
 
           <Grid.Column verticalAlign="middle">
             {/* <Button content="Sign up" icon="signup" size="big"></Button> */}
-            <h4
-              onClick={this.showModal}
-              // content="Sign up"
-              // icon="signup"
-              // size="big"
-            >
-              {" "}
+            <h3 onClick={this.showModal}>
               Sign Up
-              {this.state.signUpModal ? <Register /> : null}
-            </h4>
+              {this.state.signUpModal ? (
+                <Register register={this.register} />
+              ) : null}
+            </h3>
           </Grid.Column>
         </Grid>
 
