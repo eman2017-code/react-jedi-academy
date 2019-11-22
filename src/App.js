@@ -42,6 +42,32 @@ class App extends React.Component {
     }
   };
 
+  // logOut = async loginInfo => {
+  //   const response = await fetch(
+  //     process.env.REACT_APP_API_URL + "/api/v1/padwans/logout",
+  //     {
+  //       method: "GET",
+  //       // these are the cookies
+  //       credentials: "include",
+  //       body: JSON.stringify(loginInfo),
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       }
+  //     }
+  //   );
+  //   const parsedLoginResponse = await response.json();
+
+  //   if (parsedLoginResponse.status.code === 200) {
+  //     console.log("you are now logged in");
+  //     this.setState({
+  //       loggedIn: true
+  //     });
+  //   } else {
+  //     console.log("Login Failed:");
+  //     console.log(parsedLoginResponse);
+  //   }
+  // };
+
   render() {
     return (
       <div>
