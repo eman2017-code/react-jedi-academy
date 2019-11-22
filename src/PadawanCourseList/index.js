@@ -5,8 +5,18 @@ class PadawanCourseList extends Component {
   constructor() {
     super();
 
-    this.state = {};
+    this.state = {
+      showCourseModal: false
+    };
   }
+
+  // create a function that will show all the courses that a student has
+  openCourses = () => {
+    console.log(
+      "the student has clicked on a button that will open their courses that they are currently taking"
+    );
+  };
+
   render() {
     return (
       <Card>
@@ -17,15 +27,13 @@ class PadawanCourseList extends Component {
         />
         <Card.Content>
           <Card.Header>insert the full_name of padawan</Card.Header>
-          <Card.Description>
-            Daniel is a comedian living in Nashville.
-          </Card.Description>
+          <Card.Description>Young Jedi in training</Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <a>
-            <Icon name="user" />
+          <Button onClick={this.openCourses}>
+            <Icon name="book" />
             10 Courses
-          </a>
+          </Button>
         </Card.Content>
       </Card>
     );
