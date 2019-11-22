@@ -13,8 +13,8 @@ class App extends React.Component {
     super();
     this.state = {
       // being logged in will initially be false
-      loggedIn: true,
-      loggedInPadawan: null,
+      loggedIn: false,
+      loggedInPadawan: null
 
       // initially register will be false
       // register: false
@@ -39,7 +39,7 @@ class App extends React.Component {
     // if the response is cleared
     if (parsedLoginResponse.status.code === 201) {
       this.setState({
-        loggedIn: true,
+        loggedIn: true
         // loggedInPadawan: parsedLoginResponse.data.full_name
       });
     } else {
@@ -116,7 +116,6 @@ class App extends React.Component {
           <Login login={this.login} />
         )}
       </div>
-
     );
   }
 }
