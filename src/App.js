@@ -1,72 +1,115 @@
 import React from "react";
 import "./App.css";
+// import Register from "./Register";
 import Login from "./Login";
+import PadawanDashboard from "./PadawanDashboard";
 import Register from "./Register";
 import AdminShowAllCourses from "./AdminShowAllCourses"
+import AdminShowAllStudents from "./AdminShowAllStudents";
 
 class App extends React.Component {
   constructor() {
     super();
-
     this.state = {
-      // initially login will be false
-      login: false,
+      // being logged in will initially be false
       loggedIn: false,
+      loggedInPadawan: null
       // initially register will be false
-      register: false
+      // register: false
     };
   }
 
-  // show login form
-  showLogin = () => {
-    // switch the state of each
-    this.setState({
-      login: true,
-      register: false
-    });
-  };
-  login = async loginInfo => {
-    // we have to fetch the response from the API
+  // create register route to be passed into the register component
+  register = async registerInfo => {
+    // we have to fetch this information in the route in our api
     const response = await fetch(
+      process.env.REACT_APP_API_URL + "/api/v1/padawans/register",
+      {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(registerInfo),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+    const parsedLoginResponse = await response.json();
+    // if the response is cleared
+    if (parsedLoginResponse.status.code === 201) {
+      this.setState({
+        loggedIn: true,
+        loggedInPadawan: parsedLoginResponse.data.full_name
+      });
+    } else {
+      console.log("Registration Failed:");
+      console.log(parsedLoginResponse);
+    }
+  };
+
+  // create a route to login
+  login = async loginInfo => {
+    const response = await fetch(
+      // fetch the response from the API
       process.env.REACT_APP_API_URL + "/api/v1/padawans/login",
       {
         method: "POST",
-        // always include the credentials
+        // this is the cookies
         credentials: "include",
-        // must be JSON
         body: JSON.stringify(loginInfo),
         headers: {
           "Content-Type": "application/json"
         }
       }
     );
-    // wait for the response
     const parsedLoginResponse = await response.json();
-    // if the resonse is good
-    if (parsedLoginResponse.status.code == 200) {
-      // then set the state of logged in to true
+    console.log(parsedLoginResponse);
+
+    if (parsedLoginResponse.status.code === 200) {
       this.setState({
-        loggedIn: true
+        loggedIn: true,
+        loggedInPadawan: parsedLoginResponse.data
       });
-    } // otherwise
-    else {
+    } else {
       console.log(parsedLoginResponse);
     }
   };
 
-  // show the register form
-  showRegister = () => {
-    // switch the state of each
-    this.setState({
-      login: false,
-      register: true
-    });
-  };
+  // logOut = async loginInfo => {
+  //   const response = await fetch(
+  //     process.env.REACT_APP_API_URL + "/api/v1/padwans/logout",
+  //     {
+  //       method: "GET",
+  //       // these are the cookies
+  //       credentials: "include",
+  //       body: JSON.stringify(loginInfo),
+  //       headers: {
+  //         "Content-Type": "application/json"
+  //       }
+  //     }
+  //   );
+  //   const parsedLoginResponse = await response.json();
+
+  //   if (parsedLoginResponse.status.code === 200) {
+  //     console.log("you are now logged in");
+  //     this.setState({
+  //       loggedIn: true
+  //     });
+  //   } else {
+  //     console.log("Login Failed:");
+  //     console.log(parsedLoginResponse);
+  //   }
+  // };
+
+  // {this.state.loggedIn ? <AdminShowAllCourses /> : null}
 
   render() {
     return (
-      <div>
-      {this.state.loggedIn ? <AdminShowAllCourses /> : null}
+      <div className="App">
+        {this.state.loggedIn ? (
+          <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} />
+        ) : (
+          <Login login={this.login} />
+        )}
       </div>
     );
   }
