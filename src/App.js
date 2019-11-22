@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 // import Register from "./Register";
 import Login from "./Login";
+import PadawanDashboard from "./PadawanDashboard";
 // import PadawanDashboard from "./PadawanDashboard";
 
 class App extends React.Component {
@@ -9,9 +10,9 @@ class App extends React.Component {
     super();
     this.state = {
       // being logged in will initially be false
-      loggedIn: false,
+      loggedIn: false
       // initially register will be false
-      register: false
+      // register: false
     };
   }
 
@@ -33,8 +34,7 @@ class App extends React.Component {
     // if the response is cleared
     if (parsedLoginResponse.status.code === 201) {
       this.setState({
-        loggedIn: true,
-        register: true
+        loggedIn: true
       });
     } else {
       console.log("Registration Failed:");
@@ -62,7 +62,6 @@ class App extends React.Component {
     if (parsedLoginResponse.status.code === 200) {
       console.log("you are now logged in");
       this.setState({
-        register: true,
         loggedIn: true
       });
     } else {
@@ -100,8 +99,11 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <Login login={this.login} register={this.register} />
-        {/* <Register register={this.render} /> */}
+        {this.state.loggedIn ? (
+          <PadawanDashboard />
+        ) : (
+          <Login login={this.login} />
+        )}
         {/* {this.state.loggedIn ? <PadawanDashboard /> : null} */}
         {/* {this.state.register ? <PadawanDashboard /> : null} */}
       </div>
