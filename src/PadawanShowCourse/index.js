@@ -3,7 +3,7 @@ import { Modal, Button, Card, Image, Icon, Header } from "semantic-ui-react";
 
 function PadawanShowCourse() {
   return (
-    <Modal trigger={<Button>Scrolling Content Modal</Button>}>
+    <Modal>
       <Modal.Header>Profile Picture</Modal.Header>
       <Modal.Content image scrolling>
         <Image

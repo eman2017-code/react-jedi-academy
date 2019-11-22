@@ -21,7 +21,9 @@ class PadawanCourseList extends Component {
   render() {
     return (
       <div>
-        <div>{this.state.showCourseModal ? <PadawanShowCourse /> : null}</div>
+        <div>
+          <PadawanShowCourse showCourseModal={this.state.showCourseModal} />
+        </div>
         <div>
           <Header as="h2">
             <Image
