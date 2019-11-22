@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import {
-  Button,
-  Container,
-  Divider,
-  Form,
-  Grid,
-  Segment
-} from "semantic-ui-react";
+import React from "react";
+// import {
+//   Button,
+//   Container,
+//   Divider,
+//   Form,
+//   Grid,
+//   Segment
+// } from "semantic-ui-react";
 import PadawanCourseList from "../PadawanCourseList";
 
 function PadawanDashboard(props) {

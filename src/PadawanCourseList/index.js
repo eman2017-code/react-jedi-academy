@@ -1,21 +1,38 @@
 import React, { Component } from "react";
 import { Button, Card, Image, Icon, Header } from "semantic-ui-react";
+// import PadawanShowCourse from "../PadawanShowCourse";
 
 class PadawanCourseList extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      showCourseModal: false
-      // full_name: this.props.full_name
+      courses: []
     };
   }
 
-  // create a function that will show all the courses that a student has
-  openCourses = () => {
-    this.setState({
-      showCourseModal: true
-    });
+  // create a method that will get all the courses that a user is in
+  getCoursesPadawanIsIn = async padawanId => {
+    try {
+      const response = await fetch(
+        process.env.REACT_APP_API_URL + "/api/v1/padawans/" + padawanId,
+        {
+          credentials: "include"
+        }
+      );
+      const parsedResponse = await response.json();
+      console.log("this is the parsed response");
+      console.log(parsedResponse);
+      // if the response is cleared
+      if (parsedResponse.status.code === 200) {
+        this.setState({
+          courses: parsedResponse.data
+        });
+      }
+      // otherwise, give them an error
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   render() {
@@ -41,13 +58,13 @@ class PadawanCourseList extends Component {
               ui={false}
             />
             <Card.Content>
-
+              {/* <Card.Header>{this.props.loggedInPadawan.full_name}</Card.Header> */}
               <Card.Description>Young Jedi in training</Card.Description>
             </Card.Content>
             <Card.Content extra>
-              <Button onClick={this.openCourses}>
+              <Button onClick={this.getCoursesPadawanIsIn}>
                 <Icon name="book" />
-                10 Courses
+                View Classes
               </Button>
             </Card.Content>
           </Card>
