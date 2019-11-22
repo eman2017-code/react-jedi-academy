@@ -8,24 +8,21 @@ class PadawanCourseList extends Component {
 
     this.state = {
       courses: []
-      // we need to get the id of the user so that we are able to interpolate it
     };
   }
 
   // create a method that will get all the courses that a user is in
-  getCoursesPadawanIsIn = async e => {
-    console.log("this.courses");
-    console.log(this.state.courses);
+  getCoursesPadawanIsIn = async padawanId => {
     try {
       const response = await fetch(
-        process.env.REACT_APP_API_URL + "/api/v1/padawans/" + e,
+        process.env.REACT_APP_API_URL + "/api/v1/padawans/" + padawanId,
         {
-          method: "GET",
-          credentials: "include",
-          body: JSON.stringify(this.state.courses),
-          headers: {
-            "Content-type": "application/json"
-          }
+          // method: "GET",
+          credentials: "include"
+          // body: JSON.stringify(padawanId),
+          // headers: {
+          //   "Content-type": "application/json"
+          // }
         }
       );
       const parsedResponse = await response.json();
