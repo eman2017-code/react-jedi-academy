@@ -7,8 +7,6 @@ function AdminShowAllStudents(props){
 		return (
 
 			<li key={padawan.id}> {padawan.full_name} </li>
-
-
 		)
 	})
 

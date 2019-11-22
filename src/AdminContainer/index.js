@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import AdminShowAllStudents from '../AdminShowAllStudents';
 import AdminShowAllCourses from '../AdminShowAllCourses';
-// import CourseList from './CourseList';
+import AdminAddClass from '../AdminAddClass';
+import { Button } from "semantic-ui-react";
 
 
 class AdminContainer extends Component {
@@ -10,7 +11,8 @@ class AdminContainer extends Component {
 
 		this.state = {
 			padawans: [],
-			courses: []
+			courses: [],
+			addClass: false
 
 		}
 	}
@@ -59,11 +61,20 @@ class AdminContainer extends Component {
 		
 	};
 
+	// make a function that will show the add class
+	addClass = () => {
+		this.setState({
+			addclass: true
+		})
+	}
+
 	render(){
 		return(
-			<div> 
+			<div>
+			{this.state.addClass ? <AdminAddClass /> : null}
 				<AdminShowAllStudents padawans={this.state.padawans} />
 				<AdminShowAllCourses courses={this.state.courses} />
+				<Button onClick={this.addClass}>Add Class</Button>
 			</div> 
 			)
 	}
