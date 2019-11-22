@@ -6,8 +6,9 @@ function AdminShowAllCourses(props){
     return (
         <Card key={course.id}>
           <Card.Content>
-          	<Card.Header>Course {course.title}</Card.Header>
+          	<Card.Header>COURSE {course.id}</Card.Header>
             <Card.Header>{course.title}</Card.Header>
+          	<Card.Description>{course.description}</Card.Description>  
           </Card.Content>
           <Card.Content extra>
             <Button>Delete Course</Button>

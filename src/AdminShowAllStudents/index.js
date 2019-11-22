@@ -9,7 +9,6 @@ function AdminShowAllStudents(props){
 		return (
 			 
 			<List.Item key={padawan.id}> {padawan.full_name} </List.Item>
-
 		)
 	})
 
