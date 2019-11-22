@@ -43,7 +43,7 @@ class AdminContainer extends Component {
 			const courses = await fetch(process.env.REACT_APP_API_URL + '/api/v1/courses/');
 			const parsedCourses = await courses.json();
 			console.log(parsedCourses);
-			
+
 			this.setState({
 				courses: parsedCourses.data
 			})
@@ -59,7 +59,7 @@ class AdminContainer extends Component {
 		return(
 
 			<AdminShowAllStudents padawans={this.state.padawans} />
-			<CourseList />
+			<AdminShowAllCourses courses={this.state.courses} />
 			
 			)
 	}
