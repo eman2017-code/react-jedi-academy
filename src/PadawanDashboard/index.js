@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 // import {
 //   Button,
 //   Container,
@@ -8,22 +8,23 @@ import React from "react";
 //   Segment
 // } from "semantic-ui-react";
 import PadawanCourseList from "../PadawanCourseList";
+import PadawanShowCourse from "../PadawanShowCourse";
 
-function PadawanDashboard(props) {
-  return <PadawanCourseList loggedInPadawan={props.loggedInPadawan} />;
+class PadawanDashboard extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      loggedInPadawan: this.props.loggedInPadawan
+    };
+  }
+  render() {
+    return (
+      <div>
+        <PadawanCourseList loggedInPadawan={this.state.loggedInPadawan} />
+      </div>
+    );
+  }
 }
-
-// class PadawanDashboard extends Component {
-//   constructor(props) {
-//     super(props);
-
-//     this.state = {
-//       loggedInPadawan: this.props.loggedInPadawan
-//     };
-//   }
-//   render() {
-//     return <PadawanCourseList loggedInPadawan={this.state.loggedInPadawan} />;
-//   }
-// }
 
 export default PadawanDashboard;
