@@ -20,7 +20,7 @@ class AdminContainer extends Component {
 
 		try{
 
-			const padawans = await fetch(process.env.REACT_APP_API_URL + '/api/v1/courses')
+			const padawans = await fetch(process.env.REACT_APP_API_URL + '/api/v1/padawans')
 			const parsedPadawans = wait padawans.json();
 			console.log(parsedPadawans);
 
