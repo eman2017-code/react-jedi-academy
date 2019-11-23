@@ -11,7 +11,13 @@ class AdminContainer extends Component {
     this.state = {
       padawans: [],
       courses: [],
-      addCourse: false
+      addCourse: false,
+      // courseToAdd: {
+      // 	title: '',
+      // 	description: ''
+      // }
+
+
     };
   }
 
@@ -61,6 +67,9 @@ class AdminContainer extends Component {
 
   addCourse = () => {
   	console.log('Hitting The Button')
+  	this.setState({
+        addCourse: true
+    })
   }
   
 
@@ -83,14 +92,13 @@ class AdminContainer extends Component {
   render() {
     return (
       <div>
-        <div>{this.state.addCourse ? <AdminAddCourse /> : null}</div>
-
         <AdminShowAllStudents padawans={this.state.padawans} />
         <AdminShowAllCourses
           courses={this.state.courses}
           deleteCourse={this.deleteCourse}
         />
         <Button onClick={this.addCourse}>Add A Course</Button>
+        <div>{this.state.addCourse ? <AdminAddCourse/> : null}</div>
       </div>
     );
   }
