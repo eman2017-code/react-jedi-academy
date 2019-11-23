@@ -59,6 +59,11 @@ class AdminContainer extends Component {
     }
   };
 
+  addCourse = () => {
+  	console.log('Hitting The Button')
+  }
+  
+
   deleteCourse = async id => {
     const deleteCourseResponse = await fetch(
       process.env.REACT_APP_API_URL + "/api/v1/courses/" + id,
