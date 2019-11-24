@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, Divider, Form, Grid, Segment } from "semantic-ui-react";
-// import Register from "../Register";
+import Register from "../Register";
 import PadawanDashboard from "../PadawanDashboard";
 
 class Login extends Component {
@@ -12,7 +12,8 @@ class Login extends Component {
       password: "",
       loggedIn: false,
       padawan_id: "",
-      action: "login"
+      action: "login",
+      register: false
     };
   }
 
@@ -39,12 +40,13 @@ class Login extends Component {
     });
   };
 
-  // // method to show the modal
-  // showModal = () => {
-  //   this.setState({
-  //     signUpModal: true
-  //   });
-  // };
+  // method to show the register component and the enrollment component
+  registerAndEnroll = () => {
+    this.setState({
+      register: true
+    });
+    console.log(this.state);
+  };
 
   render() {
     return (
@@ -79,7 +81,12 @@ class Login extends Component {
             </Grid.Column>
 
             <Grid.Column verticalAlign="middle">
-              <Button content="Sign up" icon="signup" size="big" />
+              <Button
+                onClick={this.registerAndEnroll}
+                content="Sign up"
+                icon="signup"
+                size="big"
+              />
             </Grid.Column>
           </Grid>
 

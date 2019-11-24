@@ -1,10 +1,7 @@
 import React from "react";
 import "./App.css";
-// import Register from "./Register";
 import Login from "./Login";
 import PadawanDashboard from "./PadawanDashboard";
-import AdminShowAllCourses from "./AdminShowAllCourses";
-import AdminShowAllStudents from "./AdminShowAllStudents";
 import AdminContainer from "./AdminContainer";
 
 class App extends React.Component {
@@ -37,8 +34,8 @@ class App extends React.Component {
     // if the response is cleared
     if (parsedLoginResponse.status.code === 201) {
       this.setState({
+        // the padawan is not logged in
         loggedIn: true
-        // loggedInPadawan: parsedLoginResponse.data.full_name
       });
     } else {
       console.log("Registration Failed:");
@@ -110,10 +107,12 @@ class App extends React.Component {
 
   render() {
     const componentToRender = () => {
+      // if they are the admin, bring them to the admin dashboard
       if (this.state.isAdmin) {
         return <AdminContainer loggedInPadawan={this.state.loggedInPadawan} />;
       } else if (this.state.loggedIn) {
         return (
+          // if they are a padawan, bring them to the padawan dashboard
           <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} />
         );
       } else {

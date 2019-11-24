@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import PadawanCourseList from "../PadawanCourseList";
-import PadawanShowCourse from "../PadawanShowCourse";
 
 class PadawanDashboard extends Component {
   constructor(props) {
