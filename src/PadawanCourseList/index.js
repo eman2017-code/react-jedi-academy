@@ -16,8 +16,6 @@ class PadawanCourseList extends Component {
 
   // create a method that will get all the courses that a user is in
   getCoursesPadawanIsIn = async () => {
-    console.log("this.state.padawanId");
-    console.log(this.state.padawanId);
     try {
       const response = await fetch(
         process.env.REACT_APP_API_URL +
@@ -29,9 +27,6 @@ class PadawanCourseList extends Component {
       );
       const parsedResponse = await response.json();
 
-      console.log("this is the parsed response -- padawans classes");
-      console.log(parsedResponse);
-
       // if the response is cleared
       if (parsedResponse.status.code === 200) {
         this.setState({
@@ -39,14 +34,8 @@ class PadawanCourseList extends Component {
           showCourse: true
         });
       }
-      console.log("this.state.courses");
-      console.log(this.state.courses);
       // otherwise, give them an error
-    } catch (err) {
-      console.log(err);
-      console.log("this.state.courses");
-      console.log(this.state.courses);
-    }
+    } catch (err) {}
   };
 
   // show the courses on the screen that the padawan is taking

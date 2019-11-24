@@ -3,7 +3,6 @@ import "./App.css";
 // import Register from "./Register";
 import Login from "./Login";
 import PadawanDashboard from "./PadawanDashboard";
-import Register from "./Register";
 import AdminShowAllCourses from "./AdminShowAllCourses";
 import AdminShowAllStudents from "./AdminShowAllStudents";
 import AdminContainer from "./AdminContainer";
@@ -17,9 +16,6 @@ class App extends React.Component {
       loggedInPadawan: null,
       // checking to see if user is an admin
       isAdmin: false
-
-      // initially register will be false
-      // register: false
     };
   }
 
@@ -111,11 +107,6 @@ class App extends React.Component {
   //     console.log(parsedLoginResponse);
   //   }
   // };
-
-  // THIS IS SOMETHING THAT WE WILL NEED TO ADD INTO THE LOGIN PART
-
-  // {this.state.loggedIn ? <AdminShowAllCourses /> : null}
-  // {this.state.loggedIn ? <AdminMainPage /> : null}
 
   render() {
     const componentToRender = () => {

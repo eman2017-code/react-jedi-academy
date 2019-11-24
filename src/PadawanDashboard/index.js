@@ -11,7 +11,6 @@ class PadawanDashboard extends Component {
     };
   }
   render() {
-    console.log(this.state.loggedInPadawan);
     return (
       <div>
         <PadawanCourseList loggedInPadawan={this.state.loggedInPadawan} />
