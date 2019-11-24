@@ -73,9 +73,8 @@ class AdminContainer extends Component {
   	//prevents the browser from reloading when an event is called...
   	 // e.preventDefault();
   	 e.preventDefault();
-  	console.log(courseFromForm)
   	try {
-  	//Call the array of 
+  	//Call the array of all of the courses in the DB.
   		const createdCourseResponse = await fetch(
   			process.env.REACT_APP_API_URL + "/api/v1/courses/",
   			{
@@ -89,11 +88,9 @@ class AdminContainer extends Component {
         	}
 
   		)
-  		console.log(createdCourseResponse);
   		const parsedResponse = await createdCourseResponse.json();
-      	console.log(parsedResponse, ' this is response')
+      	//push all courses + added course into state.
       	this.setState({courses: [...this.state.courses, parsedResponse.data]})
-      	console.log(this.state)
       	this.setState({
         addCourse: false
     })
@@ -133,6 +130,7 @@ class AdminContainer extends Component {
         />
         <Button onClick={this.loadForm}>Add A Course</Button>
         <div>{this.state.addCourse ? <AdminAddCourse addCourse={this.addCourse}/> : null}</div>
+        <Button onClick={this.props.logOut}>Log Out</Button>
       </div>
     );
   }

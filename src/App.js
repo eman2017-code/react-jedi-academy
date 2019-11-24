@@ -80,38 +80,42 @@ class App extends React.Component {
         console.log(parsedLoginResponse);
       }
     }
+  }
+
+   logOut = async () => {
+      console.log('hitting the log out route')
+      this.setState({
+        loggedIn: false,
+      })
+    // const response = await fetch(
+    //   process.env.REACT_APP_API_URL + "/api/v1/padwans/logout",
+    //   {
+    //     method: "GET",
+    //     // these are the cookies
+    //     credentials: "include",
+    //     body: JSON.stringify(loginInfo),
+    //     headers: {
+    //       "Content-Type": "application/json"
+    //     }
+    //   }
+    // );
+    // const parsedLoginResponse = await response.json();
+
+    // if (parsedLoginResponse.status.code === 200) {
+    //   console.log("you are now logged in");
+    //   this.setState({
+    //     loggedIn: true
+    //   });
+    // } else {
+    //   console.log("Login Failed:");
+    //   console.log(parsedLoginResponse);
+    // }
   };
-
-  // logOut = async loginInfo => {
-  //   const response = await fetch(
-  //     process.env.REACT_APP_API_URL + "/api/v1/padwans/logout",
-  //     {
-  //       method: "GET",
-  //       // these are the cookies
-  //       credentials: "include",
-  //       body: JSON.stringify(loginInfo),
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       }
-  //     }
-  //   );
-  //   const parsedLoginResponse = await response.json();
-
-  //   if (parsedLoginResponse.status.code === 200) {
-  //     console.log("you are now logged in");
-  //     this.setState({
-  //       loggedIn: true
-  //     });
-  //   } else {
-  //     console.log("Login Failed:");
-  //     console.log(parsedLoginResponse);
-  //   }
-  // };
 
   render() {
     const componentToRender = () => {
       if (this.state.isAdmin) {
-        return <AdminContainer loggedInPadawan={this.state.loggedInPadawan} />;
+        return <AdminContainer loggedInPadawan={this.state.loggedInPadawan} logOut={this.logOut}/>;
       } else if (this.state.loggedIn) {
         return (
           <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} />
