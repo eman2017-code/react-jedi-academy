@@ -35,14 +35,22 @@ class App extends React.Component {
     console.log("parsedLoginResponse.data ---> register");
     console.log(parsedLoginResponse.data);
     // if the response is cleared
-    if (parsedLoginResponse.status.code === 201) {
+    if (parsedLoginResponse.data.full_name === "admin") {
       this.setState({
-        loggedIn: true,
-        loggedInPadawan: parsedLoginResponse.data
+        isAdmin: true,
+        loggedInPadawan: this.state.loggedInPadawan
       });
     } else {
-      console.log("Registration Failed:");
-      console.log(parsedLoginResponse);
+      // if the reponse is good
+      if (parsedLoginResponse.status.code === 201) {
+        this.setState({
+          loggedIn: true,
+          loggedInPadawan: parsedLoginResponse.data
+        });
+      } else {
+        console.log("the registration has failed");
+        console.log(parsedLoginResponse);
+      }
     }
   };
 
