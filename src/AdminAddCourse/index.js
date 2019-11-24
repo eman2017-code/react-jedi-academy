@@ -2,25 +2,27 @@ import React, { Component } from 'react';
 import { Card, Button, Form, Input, Select, TextArea, Segment } from 'semantic-ui-react';
 
 class AdminAddCourse extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       title: "",
       description: ""
     };
   }
-  handleChange = e => {
+
+  handleChange = (e) => {
     // es6 computed properties [e.currentTarget.name]
     this.setState({ [e.currentTarget.name]: e.currentTarget.value });
-  };
+  }
+
   render() {
     return (
       <Segment>
         <h4>Add A Course To The Curriculum</h4>
-        <Form onSubmit={e => this.props.addCourse(e, this.state)}>
+        <Form onSubmit={(e) => this.props.addCourse(e, this.state)}>
           <Form.Input
             type="text"
-            title="title"
+            name="title"
             value={this.state.title}
             onChange={this.handleChange}
           />
@@ -31,13 +33,11 @@ class AdminAddCourse extends Component {
             value={this.state.description}
             onChange={this.handleChange}
           />
-          <Button type="Submit">Create Course</Button>
+          <Button type='Submit'>Create Course</Button>
         </Form>
       </Segment>
     );
   }
 }
 
-
-
-export default AdminAddCourse
+export default AdminAddCourse;

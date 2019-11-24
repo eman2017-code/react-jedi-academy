@@ -13,7 +13,7 @@ class App extends React.Component {
     super();
     this.state = {
       // being logged in will initially be false
-      loggedIn: false,
+      loggedIn: true,
       loggedInPadawan: null
 
       // initially register will be false

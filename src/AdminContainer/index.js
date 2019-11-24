@@ -6,16 +6,13 @@ import { Button } from "semantic-ui-react";
 
 class AdminContainer extends Component {
   constructor(props) {
+  	console.log()
     super(props);
 
     this.state = {
       padawans: [],
       courses: [],
-      addCourse: false,
-      // courseToAdd: {
-      // 	title: '',
-      // 	description: ''
-      // }
+      addCourse: false
 
 
     };
@@ -43,12 +40,12 @@ class AdminContainer extends Component {
     } catch (err) {
       console.log(err);
     }
-  };
+  }
 
   getCourses = async () => {
     try {
       const courses = await fetch(
-        process.env.REACT_APP_API_URL + "/api/v1/courses/",
+      	process.env.REACT_APP_API_URL + "/api/v1/courses/",
         {
           credentials: "include"
         }
@@ -63,13 +60,50 @@ class AdminContainer extends Component {
     } catch (err) {
       console.log(err);
     }
-  };
+  }
 
-  addCourse = () => {
-  	console.log('Hitting The Button')
+  loadForm = () => {
   	this.setState({
         addCourse: true
+    })	
+  }
+  
+
+  addCourse = async (e, courseFromForm) => {
+  	//prevents the browser from reloading when an event is called...
+  	 // e.preventDefault();
+  	 e.preventDefault();
+  	console.log(courseFromForm)
+  	try {
+  	//Call the array of 
+  		const createdCourseResponse = await fetch(
+  			process.env.REACT_APP_API_URL + "/api/v1/courses/",
+  			{
+  				method: 'POST',
+          		credentials: "include",
+          		body: JSON.stringify(courseFromForm),
+          		headers: {
+          			'Content-Type': 'application/json'
+        		}
+          				
+        	}
+
+  		)
+  		console.log(createdCourseResponse);
+  		const parsedResponse = await createdCourseResponse.json();
+      	console.log(parsedResponse, ' this is response')
+      	this.setState({courses: [...this.state.courses, parsedResponse.data]})
+      	console.log(this.state)
+      	this.setState({
+        addCourse: false
     })
+
+  	}
+  	
+  	catch (err) {
+  		console.log(err)
+  	}
+
   }
   
 
@@ -97,8 +131,8 @@ class AdminContainer extends Component {
           courses={this.state.courses}
           deleteCourse={this.deleteCourse}
         />
-        <Button onClick={this.addCourse}>Add A Course</Button>
-        <div>{this.state.addCourse ? <AdminAddCourse/> : null}</div>
+        <Button onClick={this.loadForm}>Add A Course</Button>
+        <div>{this.state.addCourse ? <AdminAddCourse addCourse={this.addCourse}/> : null}</div>
       </div>
     );
   }
