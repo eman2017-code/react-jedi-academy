@@ -3,7 +3,6 @@ import "./App.css";
 // import Register from "./Register";
 import Login from "./Login";
 import PadawanDashboard from "./PadawanDashboard";
-import Register from "./Register";
 import AdminShowAllCourses from "./AdminShowAllCourses";
 import AdminShowAllStudents from "./AdminShowAllStudents";
 import AdminContainer from "./AdminContainer";
@@ -13,11 +12,10 @@ class App extends React.Component {
     super();
     this.state = {
       // being logged in will initially be false
-      loggedIn: true,
-      loggedInPadawan: null
-
-      // initially register will be false
-      // register: false
+      loggedIn: false,
+      loggedInPadawan: null,
+      // checking to see if user is an admin
+      isAdmin: false
     };
   }
 
@@ -64,14 +62,23 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
-    // if the reponse is good
-    if (parsedLoginResponse.status.code === 200) {
+    console.log(parsedLoginResponse.data);
+
+    if (parsedLoginResponse.data.full_name === "admin") {
       this.setState({
-        loggedIn: true,
-        loggedInPadawan: parsedLoginResponse.data
+        isAdmin: true,
+        loggedInPadawan: this.state.loggedInPadawan
       });
     } else {
-      console.log(parsedLoginResponse);
+      // if the reponse is good
+      if (parsedLoginResponse.status.code === 200) {
+        this.setState({
+          loggedIn: true,
+          loggedInPadawan: parsedLoginResponse.data
+        });
+      } else {
+        console.log(parsedLoginResponse);
+      }
     }
   };
 
@@ -101,21 +108,20 @@ class App extends React.Component {
   //   }
   // };
 
-  // THIS IS SOMETHING THAT WE WILL NEED TO ADD INTO THE LOGIN PART
-
-  // {this.state.loggedIn ? <AdminShowAllCourses /> : null}
-  // {this.state.loggedIn ? <AdminMainPage /> : null}
-
   render() {
-    return (
-      <div className="App">
-        {this.state.loggedIn ? (
-          <AdminContainer loggedInPadawan={this.state.loggedInPadawan} />
-        ) : (
-          <Login login={this.login} />
-        )}
-      </div>
-    );
+    const componentToRender = () => {
+      if (this.state.isAdmin) {
+        return <AdminContainer loggedInPadawan={this.state.loggedInPadawan} />;
+      } else if (this.state.loggedIn) {
+        return (
+          <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} />
+        );
+      } else {
+        return <Login login={this.login} />;
+      }
+    };
+
+    return <div className="App">{componentToRender()}</div>;
   }
 }
 

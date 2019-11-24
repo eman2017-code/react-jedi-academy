@@ -11,7 +11,7 @@ class Login extends Component {
       full_name: "",
       password: "",
       loggedIn: false,
-      // signUpModal: false,
+      padawan_id: "",
       action: "login"
     };
   }

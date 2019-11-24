@@ -9,22 +9,24 @@ class PadawanCourseList extends Component {
 
     this.state = {
       courses: [],
-      showCourse: false
+      showCourse: false,
+      padawanId: this.props.loggedInPadawan
     };
   }
 
   // create a method that will get all the courses that a user is in
-  getCoursesPadawanIsIn = async padawanId => {
+  getCoursesPadawanIsIn = async () => {
     try {
       const response = await fetch(
-        process.env.REACT_APP_API_URL + "/api/v1/padawans/" + padawanId,
+        process.env.REACT_APP_API_URL +
+          "/api/v1/padawans/" +
+          this.state.padawanId.id,
         {
           credentials: "include"
         }
       );
       const parsedResponse = await response.json();
-      console.log("this is the parsed response -- padawans classes");
-      console.log(parsedResponse);
+
       // if the response is cleared
       if (parsedResponse.status.code === 200) {
         this.setState({
@@ -32,11 +34,8 @@ class PadawanCourseList extends Component {
           showCourse: true
         });
       }
-      console.log(this.state.courses);
       // otherwise, give them an error
-    } catch (err) {
-      console.log(err);
-    }
+    } catch (err) {}
   };
 
   // show the courses on the screen that the padawan is taking
@@ -64,7 +63,7 @@ class PadawanCourseList extends Component {
               ui={false}
             />
             <Card.Content>
-              {/* <Card.Header>{this.props.loggedInPadawan.full_name}</Card.Header> */}
+              <Card.Header>{this.props.loggedInPadawan.full_name}</Card.Header>
               <Card.Description>Young Jedi in training</Card.Description>
             </Card.Content>
             <Card.Content extra>

@@ -1,12 +1,4 @@
 import React, { Component } from "react";
-// import {
-//   Button,
-//   Container,
-//   Divider,
-//   Form,
-//   Grid,
-//   Segment
-// } from "semantic-ui-react";
 import PadawanCourseList from "../PadawanCourseList";
 import PadawanShowCourse from "../PadawanShowCourse";
 

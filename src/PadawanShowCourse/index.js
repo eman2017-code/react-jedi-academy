@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import { Modal, Button, Image, Icon, Header, Card } from "semantic-ui-react";
 
 function PadawanShowCourse(props) {
-  console.log("this is props in PadawanShowCourse component >>> ", props);
-
   const padawanCourses = props.padawanCourses.map(padawanCourse => {
     return (
       <Card key={padawanCourse.id}>
