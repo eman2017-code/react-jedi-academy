@@ -81,6 +81,7 @@ class Login extends Component {
             </Grid.Column>
 
             <Grid.Column verticalAlign="middle">
+              {this.state.register ? <Register /> : null}
               <Button
                 onClick={this.registerAndEnroll}
                 content="Sign up"
