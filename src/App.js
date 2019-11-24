@@ -14,7 +14,9 @@ class App extends React.Component {
     this.state = {
       // being logged in will initially be false
       loggedIn: false,
-      loggedInPadawan: null
+      loggedInPadawan: null,
+      // checking to see if user is an admin
+      isAdmin: false
 
       // initially register will be false
       // register: false
@@ -65,14 +67,22 @@ class App extends React.Component {
     );
     const parsedLoginResponse = await response.json();
     console.log(parsedLoginResponse.data);
-    // if the reponse is good
-    if (parsedLoginResponse.status.code === 200) {
+
+    if (parsedLoginResponse.data.full_name === "admin") {
       this.setState({
-        loggedIn: true,
-        loggedInPadawan: parsedLoginResponse.data
+        isAdmin: true,
+        loggedInPadawan: this.state.loggedInPadawan
       });
     } else {
-      console.log(parsedLoginResponse);
+      // if the reponse is good
+      if (parsedLoginResponse.status.code === 200) {
+        this.setState({
+          loggedIn: true,
+          loggedInPadawan: parsedLoginResponse.data
+        });
+      } else {
+        console.log(parsedLoginResponse);
+      }
     }
   };
 
@@ -108,15 +118,19 @@ class App extends React.Component {
   // {this.state.loggedIn ? <AdminMainPage /> : null}
 
   render() {
-    return (
-      <div className="App">
-        {this.state.loggedIn ? (
+    const componentToRender = () => {
+      if (this.state.isAdmin) {
+        return <AdminContainer loggedInPadawan={this.state.loggedInPadawan} />;
+      } else if (this.state.loggedIn) {
+        return (
           <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} />
-        ) : (
-          <Login login={this.login} />
-        )}
-      </div>
-    );
+        );
+      } else {
+        return <Login login={this.login} />;
+      }
+    };
+
+    return <div className="App">{componentToRender()}</div>;
   }
 }
 
