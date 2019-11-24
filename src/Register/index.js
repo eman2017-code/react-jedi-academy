@@ -8,9 +8,10 @@ class Register extends Component {
 
     this.state = {
       full_name: "",
-      email: "",
       password: "",
       loggedIn: false,
+      padawan_id: "",
+      email: "",
       action: "register"
     };
   }

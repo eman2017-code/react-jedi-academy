@@ -45,7 +45,6 @@ class Login extends Component {
     this.setState({
       register: true
     });
-    console.log(this.state);
   };
 
   render() {
@@ -81,10 +80,12 @@ class Login extends Component {
             </Grid.Column>
 
             <Grid.Column verticalAlign="middle">
-              {this.state.register ? <Register /> : null}
+              {this.state.register ? (
+                <Register register={this.props.register} />
+              ) : null}
               <Button
                 onClick={this.register}
-                content="Sign up"
+                content="Register"
                 icon="signup"
                 size="big"
               />

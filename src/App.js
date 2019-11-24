@@ -32,11 +32,13 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
+    console.log("parsedLoginResponse.data ---> register");
+    console.log(parsedLoginResponse.data);
     // if the response is cleared
     if (parsedLoginResponse.status.code === 201) {
       this.setState({
-        // the padawan is not logged in
-        loggedIn: true
+        loggedIn: true,
+        loggedInPadawan: parsedLoginResponse.data
       });
     } else {
       console.log("Registration Failed:");
@@ -60,6 +62,7 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
+    console.log("parsedLoginResponse.data ---> login");
     console.log(parsedLoginResponse.data);
 
     if (parsedLoginResponse.data.full_name === "admin") {
@@ -117,8 +120,7 @@ class App extends React.Component {
           <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} />
         );
       } else {
-        return <Login login={this.login} />;
-        return <Register register={this.register} />;
+        return <Login login={this.login} register={this.register} />;
       }
     };
 
