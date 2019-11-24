@@ -85,7 +85,7 @@ class App extends React.Component {
    logOut = async () => {
       console.log('hitting the log out route')
       this.setState({
-        loggedIn: false,
+        isAdmin: false,
       })
     // const response = await fetch(
     //   process.env.REACT_APP_API_URL + "/api/v1/padwans/logout",
