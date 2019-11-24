@@ -64,6 +64,7 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
+    console.log(parsedLoginResponse.data);
     // if the reponse is good
     if (parsedLoginResponse.status.code === 200) {
       this.setState({
@@ -110,7 +111,7 @@ class App extends React.Component {
     return (
       <div className="App">
         {this.state.loggedIn ? (
-          <AdminContainer loggedInPadawan={this.state.loggedInPadawan} />
+          <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} />
         ) : (
           <Login login={this.login} />
         )}
