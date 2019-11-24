@@ -1,6 +1,7 @@
 import React from "react";
 import "./App.css";
 import Login from "./Login";
+import Register from "./Register";
 import PadawanDashboard from "./PadawanDashboard";
 import AdminContainer from "./AdminContainer";
 
@@ -117,6 +118,7 @@ class App extends React.Component {
         );
       } else {
         return <Login login={this.login} />;
+        return <Register register={this.register} />;
       }
     };
 

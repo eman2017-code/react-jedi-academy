@@ -41,7 +41,7 @@ class Login extends Component {
   };
 
   // method to show the register component and the enrollment component
-  registerAndEnroll = () => {
+  register = () => {
     this.setState({
       register: true
     });
@@ -83,7 +83,7 @@ class Login extends Component {
             <Grid.Column verticalAlign="middle">
               {this.state.register ? <Register /> : null}
               <Button
-                onClick={this.registerAndEnroll}
+                onClick={this.register}
                 content="Sign up"
                 icon="signup"
                 size="big"
