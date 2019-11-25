@@ -39,7 +39,7 @@ class PadawanCourseList extends Component {
     } catch (err) {}
   };
 
-  // show the courses on the screen that the padawan is taking
+  // show the courses on the screen that the user is taking
   render() {
     return (
       <div>
@@ -76,7 +76,10 @@ class PadawanCourseList extends Component {
         </div>
         <div>
           {this.state.showCourse ? (
-            <PadawanShowCourse padawanCourses={this.state.courses} />
+            <PadawanShowCourse
+              padawanCourses={this.state.courses}
+              getPadawansACourseIsAttachedTo={this.state.courses}
+            />
           ) : null}
         </div>
       </div>
