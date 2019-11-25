@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import PadawanCourseList from "../PadawanCourseList";
 import PadawanEnrollment from "../PadawanEnrollment";
 
-const OPTIONS = ["One", "Two", "Three"];
-
 class PadawanDashboard extends Component {
   constructor(props) {
     super(props);

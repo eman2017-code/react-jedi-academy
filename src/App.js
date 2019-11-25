@@ -1,7 +1,5 @@
 import React from "react";
 import "./App.css";
-// import Login from "./Login";
-// import Register from "./Register";
 import PadawanDashboard from "./PadawanDashboard";
 import AdminContainer from "./AdminContainer";
 import LoginRegisterForm from "./LoginRegisterForm";
@@ -72,8 +70,6 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
-    console.log("parsedLoginResponse.data -- login");
-    console.log(parsedLoginResponse.data);
 
     if (parsedLoginResponse.data.full_name === "admin") {
       this.setState({
