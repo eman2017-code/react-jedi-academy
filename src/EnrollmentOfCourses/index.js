@@ -2,7 +2,6 @@ import React from "react";
 import { Card, Button } from "semantic-ui-react";
 
 function EnrollmentOfCourses(props) {
-  console.log("this is props in <AdminShowAllCourses/> >>> ", props);
   const courses = props.courses.map(course => {
     return (
       <Card key={course.id}>
