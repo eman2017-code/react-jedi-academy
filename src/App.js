@@ -3,6 +3,7 @@ import "./App.css";
 import PadawanDashboard from "./PadawanDashboard";
 import AdminContainer from "./AdminContainer";
 import LoginRegisterForm from "./LoginRegisterForm";
+import { Card, Button, Form, Input, Select, TextArea, Segment } from 'semantic-ui-react';
 
 class App extends React.Component {
   constructor() {
