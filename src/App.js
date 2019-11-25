@@ -1,9 +1,10 @@
 import React from "react";
 import "./App.css";
-import Login from "./Login";
-import Register from "./Register";
+// import Login from "./Login";
+// import Register from "./Register";
 import PadawanDashboard from "./PadawanDashboard";
 import AdminContainer from "./AdminContainer";
+import LoginRegisterForm from "./LoginRegisterForm";
 
 class App extends React.Component {
   constructor() {
@@ -131,10 +132,13 @@ class App extends React.Component {
           <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} />
         );
       } else {
-        return [
-          <Login key="one" login={this.login} />,
-          <Register key="two" register={this.register} />
-        ];
+        return (
+          <LoginRegisterForm login={this.login} register={this.register} />
+        );
+        // return [
+        //   <Login key="one" login={this.login} />,
+        //   <Register key="two" register={this.register} />
+        // ];
       }
     };
 
