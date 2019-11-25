@@ -40,33 +40,36 @@ class PadawanEnrollment extends Component {
         courses: parsedCourses.data
       });
 
-      console.log("this.state.courses -- state of courses");
+      console.log("this.state.courses -- courses");
       console.log(this.state.courses);
 
       this.seeingCourses();
-      this.selectCourses();
+      // this.selectCourses();
     } catch (err) {
       console.log(err);
     }
   };
 
-  // // create a method that will actually enroll a padawan into a course
-  // selectCourses = async courseId => {
-  //   const reponse = await fetch(
-  //     process.env.REACT_APP_API_URL + "/api/v1/enrollments/" + courseId,
-  //     {
-  //       method: "POST",
-  //       credentials: "include",
-  //       body: JSON.stringify(courseId),
-  //       header: {
-  //         "Content-Type": "application/json"
-  //       }
-  //     }
-  //   );
-  //   const parsedSelectedCourseResponse = await reponse.json();
-  //   console.log("parsedSelectedCourseResponse.data");
-  //   console.log(parsedSelectedCourseResponse.data);
-  // };
+  // create a method that will actually enroll a padawan into a course
+  selectCourses = async courseId => {
+    console.log("courseId -- courseId");
+    console.log(courseId);
+    console.log("you are hitting the selectCourses");
+    const reponse = await fetch(
+      process.env.REACT_APP_API_URL + "/api/v1/enrollments/" + courseId,
+      {
+        method: "POST",
+        credentials: "include",
+        body: JSON.stringify(courseId),
+        header: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+    const parsedSelectedCourseResponse = await reponse.json();
+    console.log("parsedSelectedCourseResponse.data");
+    console.log(parsedSelectedCourseResponse.data);
+  };
 
   render() {
     return (

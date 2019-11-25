@@ -1,9 +1,10 @@
 import React from "react";
 import { Card, Button } from "semantic-ui-react";
-import PadawanDashboard from "../PadawanDashboard";
 
 function EnrollmentOfCourses(props) {
   const courses = props.courses.map(course => {
+    console.log("course.id -- course id");
+    console.log(course.id);
     return (
       <Card key={course.id}>
         <Card.Content>
@@ -11,7 +12,9 @@ function EnrollmentOfCourses(props) {
           <Card.Description>{course.description}</Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <Button onClick={props.selectedCourses}>Enroll</Button>
+          <Button onClick={() => props.selectedCourses(course.id)}>
+            Enroll
+          </Button>
         </Card.Content>
       </Card>
     );
