@@ -9,9 +9,6 @@ function PadawanShowCourse(props) {
           <Card.Header>{padawanCourse.course_id.title}</Card.Header>
           <Card.Header>{padawanCourse.course_id.description}</Card.Header>
         </Card.Content>
-        {/* <Card.Content extra>
-          <Button>View Course</Button>
-        </Card.Content> */}
       </Card>
     );
   });

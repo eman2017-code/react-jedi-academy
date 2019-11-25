@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Button } from "semantic-ui-react";
+import { Button, List } from "semantic-ui-react";
 
 class PadawanEnrollment extends Component {
   constructor() {
@@ -24,6 +24,7 @@ class PadawanEnrollment extends Component {
       );
 
       const parsedCourses = await courses.json();
+
       console.log("parsedCourses -- all the courses");
       console.log(parsedCourses);
 
@@ -35,8 +36,16 @@ class PadawanEnrollment extends Component {
     }
   };
 
+  showAllCourses() {
+    const courses = this.state.courses.map(course => {
+      return <List.Item key={course.id}> {courses.title} </List.Item>;
+    });
+
+    return <List bulleted> {courses} </List>;
+  }
+
   render() {
-    return <Button onClick={this.getCourses}>Show Courses</Button>;
+    return <Button onClick={this.getCourses}>Select Your Courses!</Button>;
   }
 }
 
