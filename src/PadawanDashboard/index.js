@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import PadawanCourseList from "../PadawanCourseList";
 import PadawanEnrollment from "../PadawanEnrollment";
 
+const OPTIONS = ["One", "Two", "Three"];
+
 class PadawanDashboard extends Component {
   constructor(props) {
     super(props);
@@ -12,13 +14,17 @@ class PadawanDashboard extends Component {
     console.log("loggedInPadawan -- in padawan dashboard");
     console.log(this.state.loggedInPadawan);
   }
+
   render() {
     return [
       <PadawanCourseList
         key="one"
         loggedInPadawan={this.state.loggedInPadawan}
       />,
-      <PadawanEnrollment key="two" />
+      <PadawanEnrollment
+        key="two"
+        loggedInPadawan={this.state.loggedInPadawan}
+      />
     ];
   }
 }
