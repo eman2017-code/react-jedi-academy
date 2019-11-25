@@ -21,8 +21,6 @@ class PadawanEnrollment extends Component {
 
   // create a method that loops though all the courses
   getCourses = async () => {
-    // console.log("this.state.courses -- state of courses");
-    // console.log(this.state.courses);
     try {
       // make the fetch call to the API
       const courses = await fetch(
@@ -41,11 +39,34 @@ class PadawanEnrollment extends Component {
       this.setState({
         courses: parsedCourses.data
       });
+
+      console.log("this.state.courses -- state of courses");
+      console.log(this.state.courses);
+
       this.seeingCourses();
+      this.selectCourses();
     } catch (err) {
       console.log(err);
     }
   };
+
+  // // create a method that will actually enroll a padawan into a course
+  // selectCourses = async courseId => {
+  //   const reponse = await fetch(
+  //     process.env.REACT_APP_API_URL + "/api/v1/enrollments/" + courseId,
+  //     {
+  //       method: "POST",
+  //       credentials: "include",
+  //       body: JSON.stringify(courseId),
+  //       header: {
+  //         "Content-Type": "application/json"
+  //       }
+  //     }
+  //   );
+  //   const parsedSelectedCourseResponse = await reponse.json();
+  //   console.log("parsedSelectedCourseResponse.data");
+  //   console.log(parsedSelectedCourseResponse.data);
+  // };
 
   render() {
     return (
@@ -53,7 +74,10 @@ class PadawanEnrollment extends Component {
         <Button onClick={this.getCourses}>Enroll In Courses</Button>
         <div>
           {this.state.enrolling ? (
-            <EnrollmentOfCourses courses={this.state.courses} />
+            <EnrollmentOfCourses
+              courses={this.state.courses}
+              selectedCourses={this.selectCourses}
+            />
           ) : null}
         </div>
       </div>
