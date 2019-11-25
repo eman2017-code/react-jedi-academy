@@ -130,7 +130,7 @@ class AdminContainer extends Component {
         />
         <Button onClick={this.loadForm}>Add A Course</Button>
         <div>{this.state.addCourse ? <AdminAddCourse addCourse={this.addCourse}/> : null}</div>
-        <Button onClick={this.props.logOut}>Log Out</Button>
+        <Button onClick={this.props.adminLogOut}>Log Out</Button>
       </div>
     );
   }
