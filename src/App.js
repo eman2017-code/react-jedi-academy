@@ -80,41 +80,71 @@ class App extends React.Component {
         console.log(parsedLoginResponse);
       }
     }
+  }
+
+   adminLogOut = async () => {
+        const response = await fetch(
+      // fetch the response from the API
+      process.env.REACT_APP_API_URL + "/api/v1/padawans/logout",
+      {
+        method: "GET",
+        // this is the cookies
+        credentials: "include",
+        body: JSON.stringify(),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+    const parsedLoginResponse = await response.json();
+    console.log(parsedLoginResponse);
+    console.log(this.state);
+
+    if (parsedLoginResponse.status.code === 200) {   
+      this.setState({
+        isAdmin: false
+      });
+      console.log(this.state)
+    } else {
+      console.log(parsedLoginResponse);
+    }
+  }
+
+  padawanLogOut = async () => {
+        const response = await fetch(
+      // fetch the response from the API
+      process.env.REACT_APP_API_URL + "/api/v1/padawans/logout",
+      {
+        method: "GET",
+        // this is the cookies
+        credentials: "include",
+        body: JSON.stringify(),
+        headers: {
+          "Content-Type": "application/json"
+        }
+      }
+    );
+    const parsedLoginResponse = await response.json();
+    console.log(parsedLoginResponse);
+    console.log(this.state);
+
+    if (parsedLoginResponse.status.code === 200) {   
+      this.setState({
+        loggedIn: false
+      });
+      console.log(this.state)
+    } else {
+      console.log(parsedLoginResponse);
+    }
   };
-
-  // logOut = async loginInfo => {
-  //   const response = await fetch(
-  //     process.env.REACT_APP_API_URL + "/api/v1/padwans/logout",
-  //     {
-  //       method: "GET",
-  //       // these are the cookies
-  //       credentials: "include",
-  //       body: JSON.stringify(loginInfo),
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       }
-  //     }
-  //   );
-  //   const parsedLoginResponse = await response.json();
-
-  //   if (parsedLoginResponse.status.code === 200) {
-  //     console.log("you are now logged in");
-  //     this.setState({
-  //       loggedIn: true
-  //     });
-  //   } else {
-  //     console.log("Login Failed:");
-  //     console.log(parsedLoginResponse);
-  //   }
-  // };
 
   render() {
     const componentToRender = () => {
       if (this.state.isAdmin) {
-        return <AdminContainer loggedInPadawan={this.state.loggedInPadawan} />;
+        return <AdminContainer loggedInPadawan={this.state.loggedInPadawan} adminLogOut={this.adminLogOut}/>;
       } else if (this.state.loggedIn) {
         return (
-          <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} />
+          <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} padawanLogOut={this.padawanLogOut}/>
         );
       } else {
         return <Login login={this.login} />;
