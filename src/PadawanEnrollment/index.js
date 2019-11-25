@@ -33,15 +33,9 @@ class PadawanEnrollment extends Component {
 
       const parsedCourses = await courses.json();
 
-      console.log("parsedCourses -- all the courses");
-      console.log(parsedCourses);
-
       this.setState({
         courses: parsedCourses.data
       });
-
-      console.log("this.state.courses -- courses");
-      console.log(this.state.courses);
 
       this.seeingCourses();
       // this.selectCourses();
@@ -52,9 +46,6 @@ class PadawanEnrollment extends Component {
 
   // create a method that will actually enroll a padawan into a course
   selectCourses = async courseId => {
-    console.log("courseId -- courseId");
-    console.log(courseId);
-    console.log("you are hitting the selectCourses");
     const reponse = await fetch(
       process.env.REACT_APP_API_URL + "/api/v1/enrollments/" + courseId,
       {
@@ -67,8 +58,6 @@ class PadawanEnrollment extends Component {
       }
     );
     const parsedSelectedCourseResponse = await reponse.json();
-    console.log("parsedSelectedCourseResponse.data");
-    console.log(parsedSelectedCourseResponse.data);
   };
 
   render() {

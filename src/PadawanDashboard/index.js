@@ -9,8 +9,6 @@ class PadawanDashboard extends Component {
     this.state = {
       loggedInPadawan: this.props.loggedInPadawan
     };
-    console.log("loggedInPadawan -- in padawan dashboard");
-    console.log(this.state.loggedInPadawan);
   }
 
   render() {

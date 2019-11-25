@@ -32,9 +32,6 @@ class App extends React.Component {
     );
     const parsedLoginResponse = await response.json();
 
-    console.log("parsedLoginResponse.data -- register");
-    console.log(parsedLoginResponse.data);
-
     // if the response is cleared
     if (parsedLoginResponse.data.full_name === "admin") {
       this.setState({
@@ -43,8 +40,6 @@ class App extends React.Component {
       });
     } else {
       // if the reponse is good
-      console.log("parsedLoginResponse.status.code");
-      console.log(parsedLoginResponse.status.code);
       if (response.ok) {
         this.setState({
           loggedIn: true,
@@ -91,32 +86,6 @@ class App extends React.Component {
     }
   };
 
-  // logOut = async loginInfo => {
-  //   const response = await fetch(
-  //     process.env.REACT_APP_API_URL + "/api/v1/padwans/logout",
-  //     {
-  //       method: "GET",
-  //       // these are the cookies
-  //       credentials: "include",
-  //       body: JSON.stringify(loginInfo),
-  //       headers: {
-  //         "Content-Type": "application/json"
-  //       }
-  //     }
-  //   );
-  //   const parsedLoginResponse = await response.json();
-
-  //   if (parsedLoginResponse.status.code === 200) {
-  //     console.log("you are now logged in");
-  //     this.setState({
-  //       loggedIn: true
-  //     });
-  //   } else {
-  //     console.log("Login Failed:");
-  //     console.log(parsedLoginResponse);
-  //   }
-  // };
-
   render() {
     const componentToRender = () => {
       // if they are the admin, bring them to the admin dashboard
@@ -129,15 +98,12 @@ class App extends React.Component {
         );
       } else {
         return (
+          // bring them to the loginRegister form
           <LoginRegisterForm login={this.login} register={this.register} />
         );
-        // return [
-        //   <Login key="one" login={this.login} />,
-        //   <Register key="two" register={this.register} />
-        // ];
       }
     };
-
+    // invoke method that shows which component to render
     return <div className="App">{componentToRender()}</div>;
   }
 }
