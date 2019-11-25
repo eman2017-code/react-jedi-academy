@@ -33,6 +33,7 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
+    console.log("parsedLoginResponse.data -- register");
     console.log(parsedLoginResponse.data);
     // if the response is cleared
     if (parsedLoginResponse.data.full_name === "admin") {
@@ -70,6 +71,7 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
+    console.log("parsedLoginResponse.data -- login");
     console.log(parsedLoginResponse.data);
 
     if (parsedLoginResponse.data.full_name === "admin") {

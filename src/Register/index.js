@@ -39,7 +39,6 @@ class Register extends Component {
       password: this.state.password
     });
     console.log("you are now registered");
-    console.log(this.state);
     this.setState({
       loggedIn: true,
       loggedInPadawan: this.props.loggedInPadawan
