@@ -2,8 +2,7 @@ import React, { Component } from "react";
 import AdminShowAllStudents from "../AdminShowAllStudents";
 import AdminShowAllCourses from "../AdminShowAllCourses";
 import AdminAddCourse from "../AdminAddCourse";
-// import EditCourseModal from "../EditCourseModal";
-import { Button, Form, Label, Modal, Header } from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 
 class AdminContainer extends Component {
   constructor(props) {
@@ -13,14 +12,7 @@ class AdminContainer extends Component {
     this.state = {
       padawans: [],
       courses: [],
-      addCourse: false,
-      editCourseModal: false,
-      courseToEdit: {
-        title: '',
-        description: '',
-        start_date: ''
-      }
-      // idOfCourseToEdit: -1
+      addCourse: false
 
 
     };
@@ -29,12 +21,6 @@ class AdminContainer extends Component {
   componentDidMount() {
     this.getStudents();
     this.getCourses();
-    this.loadForm();
-    this.deleteCourse();
-    this.editCourse();
-    this.updateCourse();
-    this.closeModal();
-
   }
 
   getStudents = async () => {
@@ -46,6 +32,7 @@ class AdminContainer extends Component {
         }
       );
       const parsedPadawans = await padawans.json();
+      console.log(parsedPadawans);
 
       this.setState({
         padawans: parsedPadawans.data
@@ -65,6 +52,7 @@ class AdminContainer extends Component {
       );
 
       const parsedCourses = await courses.json();
+      console.log(parsedCourses);
 
       this.setState({
         courses: parsedCourses.data
@@ -83,7 +71,8 @@ class AdminContainer extends Component {
 
   addCourse = async (e, courseFromForm) => {
   	//prevents the browser from reloading when an event is called...
-  	e.preventDefault();
+  	 // e.preventDefault();
+  	 e.preventDefault();
   	try {
   	//Call the array of all of the courses in the DB.
   		const createdCourseResponse = await fetch(
@@ -114,6 +103,7 @@ class AdminContainer extends Component {
 
   }
   
+
   deleteCourse = async id => {
     const deleteCourseResponse = await fetch(
       process.env.REACT_APP_API_URL + "/api/v1/courses/" + id,
@@ -124,64 +114,11 @@ class AdminContainer extends Component {
     );
 
     const deleteCourseParsed = await deleteCourseResponse.json();
+    console.log(deleteCourseParsed);
     this.setState({
       courses: this.state.courses.filter(course => course.id !== id)
     });
-  }
-
-  // editCourse = (idOfCourseToEdit) => {
-  //   const course = this.state.courses.find(course => course.id === idOfCourseToEdit)
-  //   this.setState({
-  //     // idOfCourseToEdit: idOfCourseToEdit
-  //     idOfCourseToEdit: course 
-  //   })
-  // }
-
-  // updateCourse = async (newCourseInfo) => {
-  //   // update the course 
-  //   try {
-  //       // hit our API to actually update it 
-  //       const url = process.env.REACT_APP_API_URL + '/api/v1/courses/' + this.state.idOfCourseToEdit
-
-  //       const updateResponse = await fetch(url, {
-  //         method: 'PUT',
-  //         body: JSON.stringify(newCourseInfo),
-  //         headers: {
-  //           'Content-Type': 'application/json'
-  //         }
-  //       })
-
-  //       const updateResponseParsed = await updateResponse.json()
-
-  //       // updating data on screen (let's be functional about it)
-  //       // iterate over courses in state, replace the pertient course
-  //       // with the data from the updateResponse 
-  //       const newCourseArrayWithUpdate = this.state.courses.map((course) => {
-  //         if(course.id === updateResponseParsed.data.id ) {
-  //           // replace it if it's that one course
-  //           course = updateResponseParsed.data
-  //         }
-  //         return course
-  //       })
-
-  //       this.setState ({
-  //         courses: newCourseArrayWithUpdate
-  //       })
-
-  //       // close the modal 
-  //       this.closeModal()
-      
-  //   } catch (err) {
-  //     console.log(err)
-  //   }
-
-  // }
-
-  // closeModal = () => {
-  //   this.setState({
-  //     idOfCourseToEdit: -1
-  //   })
-  // }
+  };
 
   render() {
     return (
@@ -190,25 +127,10 @@ class AdminContainer extends Component {
         <AdminShowAllCourses
           courses={this.state.courses}
           deleteCourse={this.deleteCourse}
-          editCourse={this.editCourse}
-
         />
-        <Button onClick={this.loadForm}> Add A Course </Button>
+        <Button onClick={this.loadForm}>Add A Course</Button>
         <div>{this.state.addCourse ? <AdminAddCourse addCourse={this.addCourse}/> : null}</div>
-         <div>
-          {
-              this.state.idOfCourseToEdit !== 1
-              ?
-              <EditCourseModal 
-                updateCourse={this.updateCourse}
-                courseToEdit={this.state.courses.find(course => course.id === this.state.idOfCourseToEdit)}
-
-              /> 
-              : 
-              null 
-          }
-        </div>
-        <Button onClick={this.props.adminLogOut}>Log Out</Button
+        <Button onClick={this.props.adminLogOut}>Log Out</Button>
       </div>
     );
   }
