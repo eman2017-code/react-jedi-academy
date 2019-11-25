@@ -10,6 +10,7 @@ class PadawanCourseList extends Component {
     this.state = {
       courses: [],
       showCourse: false,
+      viewFellowPadawans: false,
       loggedInPadawan: this.props.loggedInPadawan
     };
   }
