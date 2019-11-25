@@ -85,7 +85,7 @@ class Login extends Component {
               ) : null}
               <Button
                 onClick={this.register}
-                content="Register"
+                content="Sign Up"
                 icon="signup"
                 size="big"
               />

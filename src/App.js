@@ -32,7 +32,6 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
-    console.log("parsedLoginResponse.data ---> register");
     console.log(parsedLoginResponse.data);
     // if the response is cleared
     if (parsedLoginResponse.data.full_name === "admin") {
@@ -42,13 +41,12 @@ class App extends React.Component {
       });
     } else {
       // if the reponse is good
-      if (parsedLoginResponse.status.code === 201) {
+      if (parsedLoginResponse.status.code === 200) {
         this.setState({
           loggedIn: true,
           loggedInPadawan: parsedLoginResponse.data
         });
       } else {
-        console.log("the registration has failed");
         console.log(parsedLoginResponse);
       }
     }
@@ -70,7 +68,6 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
-    console.log("parsedLoginResponse.data ---> login");
     console.log(parsedLoginResponse.data);
 
     if (parsedLoginResponse.data.full_name === "admin") {

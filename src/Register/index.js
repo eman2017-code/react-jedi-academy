@@ -3,8 +3,8 @@ import { Button, Form, Grid, Segment } from "semantic-ui-react";
 import PadawanDashboard from "../PadawanDashboard";
 
 class Register extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
       full_name: "",
@@ -39,17 +39,26 @@ class Register extends Component {
       password: this.state.password
     });
     console.log("you are now registered");
+    console.log(this.state);
+    this.setState({
+      loggedIn: true,
+      loggedInPadawan: this.props.loggedInPadawan
+    });
   };
 
   render() {
     return (
       <div>
-        <div>{this.state.register ? <PadawanDashboard /> : null}</div>
+        <div>
+          {this.state.loggedIn ? (
+            <PadawanDashboard loggedInPadawan={this.state} />
+          ) : null}
+        </div>
         <div>
           <Segment placeholder>
             <Grid columns={2} relaxed="very" stackable>
               <Grid.Column>
-                <Form onSubmit={this.handleSubmit}>
+                <Form>
                   <Form.Input
                     type="text"
                     name="full_name"
@@ -76,9 +85,9 @@ class Register extends Component {
                   />
 
                   <Button
+                    onClick={this.handleSubmit}
                     content="Register"
                     primary
-                    onClick={this.registerPadawan}
                   />
                 </Form>
               </Grid.Column>
