@@ -13,7 +13,8 @@ class App extends React.Component {
       loggedIn: false,
       loggedInPadawan: null,
       // checking to see if user is an admin
-      isAdmin: false
+      isAdmin: false,
+      registered: false
     };
   }
 
@@ -44,6 +45,7 @@ class App extends React.Component {
       if (parsedLoginResponse.status.code === 200) {
         this.setState({
           loggedIn: true,
+          registered: true,
           loggedInPadawan: parsedLoginResponse.data
         });
       } else {
@@ -88,6 +90,8 @@ class App extends React.Component {
     }
   };
 
+  registerOrLogin = () => {};
+
   // logOut = async loginInfo => {
   //   const response = await fetch(
   //     process.env.REACT_APP_API_URL + "/api/v1/padwans/logout",
@@ -125,7 +129,10 @@ class App extends React.Component {
           <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} />
         );
       } else {
-        return <Login login={this.login} register={this.register} />;
+        return [
+          <Login key="one" login={this.login} />,
+          <Register key="two" register={this.register} />
+        ];
       }
     };
 

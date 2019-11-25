@@ -78,21 +78,7 @@ class Login extends Component {
                 <Button onClick={this.loginPadawan} content="Login" primary />
               </Form>
             </Grid.Column>
-
-            <Grid.Column verticalAlign="middle">
-              {this.state.register ? (
-                <Register register={this.props.register} />
-              ) : null}
-              <Button
-                onClick={this.register}
-                content="Sign Up"
-                icon="signup"
-                size="big"
-              />
-            </Grid.Column>
           </Grid>
-
-          <Divider vertical>Or</Divider>
         </Segment>
       </div>
     );
