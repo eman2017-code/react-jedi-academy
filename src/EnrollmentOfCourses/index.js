@@ -3,8 +3,10 @@ import { Card, Button } from "semantic-ui-react";
 
 function EnrollmentOfCourses(props) {
   const courses = props.courses.map(course => {
-    console.log("course.id -- course id");
-    console.log(course.id);
+    console.log(
+      course.id,
+      "<--- course.id -- course id in enrollmentOfCourses Function"
+    );
     return (
       <Card key={course.id}>
         <Card.Content>
