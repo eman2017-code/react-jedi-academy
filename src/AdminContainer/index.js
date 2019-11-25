@@ -65,7 +65,7 @@ class AdminContainer extends Component {
     } catch (err) {}
   };
 
-  // loads form for adding a courses
+  // loads form for adding course
   loadForm = () => {
     this.setState({
       addCourse: true
