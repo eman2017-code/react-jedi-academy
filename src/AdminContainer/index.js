@@ -99,7 +99,7 @@ class AdminContainer extends Component {
       });
     } catch (err) {}
   };
-  
+
   deleteCourse = async id => {
     const deleteCourseResponse = await fetch(
       process.env.REACT_APP_API_URL + "/api/v1/courses/" + id,
@@ -110,7 +110,6 @@ class AdminContainer extends Component {
     );
 
     const deleteCourseParsed = await deleteCourseResponse.json();
-    console.log(deleteCourseParsed);
     this.setState({
       courses: this.state.courses.filter(course => course.id !== id)
     });
