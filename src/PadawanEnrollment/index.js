@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  Card,
-  Button,
-  Form,
-  Input,
-  Select,
-  TextArea,
-  Segment
-} from "semantic-ui-react";
+import { Button } from "semantic-ui-react";
 
 class PadawanEnrollment extends Component {
   constructor() {
@@ -17,10 +9,6 @@ class PadawanEnrollment extends Component {
       // set courses to be an empty array
       courses: []
     };
-  }
-
-  componentDidMount() {
-    this.getCourses();
   }
 
   // create a method that loops though all the courses
@@ -48,7 +36,7 @@ class PadawanEnrollment extends Component {
   };
 
   render() {
-    return "pick your classes";
+    return <Button onClick={this.getCourses}>Show Courses</Button>;
   }
 }
 
