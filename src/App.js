@@ -14,8 +14,7 @@ class App extends React.Component {
       loggedIn: false,
       loggedInPadawan: null,
       // checking to see if user is an admin
-      isAdmin: false,
-      registered: false
+      isAdmin: false
     };
   }
 
@@ -34,8 +33,10 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
+
     console.log("parsedLoginResponse.data -- register");
     console.log(parsedLoginResponse.data);
+
     // if the response is cleared
     if (parsedLoginResponse.data.full_name === "admin") {
       this.setState({
@@ -47,7 +48,6 @@ class App extends React.Component {
       if (parsedLoginResponse.status.code === 200) {
         this.setState({
           loggedIn: true,
-          registered: true,
           loggedInPadawan: parsedLoginResponse.data
         });
       } else {
@@ -92,8 +92,6 @@ class App extends React.Component {
       }
     }
   };
-
-  registerOrLogin = () => {};
 
   // logOut = async loginInfo => {
   //   const response = await fetch(

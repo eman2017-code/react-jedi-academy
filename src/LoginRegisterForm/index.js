@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Form, Button, Label } from "semantic-ui-react";
-import PadawanDashboard from "../PadawanDashboard";
 
 class LoginRegisterForm extends Component {
   constructor() {
