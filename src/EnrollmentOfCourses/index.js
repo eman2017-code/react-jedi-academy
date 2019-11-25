@@ -6,15 +6,12 @@ function EnrollmentOfCourses(props) {
     return (
       <Card key={course.id}>
         <Card.Content>
-          <Card.Header>COURSE {course.id}</Card.Header>
+          {/* <Card.Header>COURSE {course.id}</Card.Header> */}
           <Card.Header>{course.title}</Card.Header>
           <Card.Description>{course.description}</Card.Description>
         </Card.Content>
         <Card.Content extra>
-          <Button onClick={() => props.deleteCourse(course.id)}>
-            Delete Course
-          </Button>
-          <Button>Edit Course</Button>
+          <Button>Enroll</Button>
         </Card.Content>
       </Card>
     );

@@ -13,10 +13,6 @@ class PadawanEnrollment extends Component {
     };
   }
 
-  //   componentDidMount() {
-  //     this.getCourses();
-  //   }
-
   seeingCourses = () => {
     this.setState({
       enrolling: true

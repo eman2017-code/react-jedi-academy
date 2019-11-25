@@ -48,51 +48,56 @@ class LoginRegisterForm extends Component {
   };
   render() {
     return (
-      <div className="LoginRegisterForm">
-        <Form onSubmit={this.handleSubmit}>
+      <div>
+        <div>
+          <h1>Jedi Academy</h1>
+        </div>
+        <div className="LoginRegisterForm">
+          <Form onSubmit={this.handleSubmit}>
+            {this.state.action === "register" ? (
+              <React.Fragment>
+                <Label>Email:</Label>
+                <Form.Input
+                  type="email"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                ></Form.Input>
+              </React.Fragment>
+            ) : null}
+
+            <Label>Full Name:</Label>
+            <Form.Input
+              type="text"
+              name="full_name"
+              value={this.state.full_name}
+              onChange={this.handleChange}
+            ></Form.Input>
+
+            <Label>Password:</Label>
+            <Form.Input
+              type="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            ></Form.Input>
+            <Button type="Submit">
+              {this.state.action === "register" ? "Register" : "Login"}
+            </Button>
+          </Form>
+
           {this.state.action === "register" ? (
-            <React.Fragment>
-              <Label>Email:</Label>
-              <Form.Input
-                type="email"
-                name="email"
-                value={this.state.email}
-                onChange={this.handleChange}
-              ></Form.Input>
-            </React.Fragment>
-          ) : null}
-
-          <Label>Full Name:</Label>
-          <Form.Input
-            type="text"
-            name="full_name"
-            value={this.state.full_name}
-            onChange={this.handleChange}
-          ></Form.Input>
-
-          <Label>Password:</Label>
-          <Form.Input
-            type="password"
-            name="password"
-            value={this.state.password}
-            onChange={this.handleChange}
-          ></Form.Input>
-          <Button type="Submit">
-            {this.state.action === "register" ? "Register" : "Login"}
-          </Button>
-        </Form>
-
-        {this.state.action === "register" ? (
-          <small>
-            Already have an account? Log in{" "}
-            <span onClick={this.switchForm}>here</span>
-          </small>
-        ) : (
-          <small>
-            Need an account? Sign up <span onClick={this.switchForm}>here</span>
-            !
-          </small>
-        )}
+            <small>
+              Already have an account? Log in{" "}
+              <span onClick={this.switchForm}>here</span>
+            </small>
+          ) : (
+            <small>
+              Need an account? Sign up{" "}
+              <span onClick={this.switchForm}>here</span>!
+            </small>
+          )}
+        </div>
       </div>
     );
   }
