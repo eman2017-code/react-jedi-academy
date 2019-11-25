@@ -10,7 +10,8 @@ class PadawanCourseList extends Component {
     this.state = {
       courses: [],
       showCourse: false,
-      padawanId: this.props.loggedInPadawan
+      viewFellowPadawans: false,
+      loggedInPadawan: this.props.loggedInPadawan
     };
   }
 
@@ -20,7 +21,7 @@ class PadawanCourseList extends Component {
       const response = await fetch(
         process.env.REACT_APP_API_URL +
           "/api/v1/padawans/" +
-          this.state.padawanId.id,
+          this.state.loggedInPadawan.id,
         {
           credentials: "include"
         }
@@ -38,8 +39,7 @@ class PadawanCourseList extends Component {
     } catch (err) {}
   };
 
-  // show the courses on the screen that the padawan is taking
-
+  // show the courses on the screen that the user is taking
   render() {
     return (
       <div>
@@ -76,7 +76,10 @@ class PadawanCourseList extends Component {
         </div>
         <div>
           {this.state.showCourse ? (
-            <PadawanShowCourse padawanCourses={this.state.courses} />
+            <PadawanShowCourse
+              padawanCourses={this.state.courses}
+              getPadawansACourseIsAttachedTo={this.state.courses}
+            />
           ) : null}
         </div>
       </div>

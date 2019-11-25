@@ -1,11 +1,8 @@
 import React from "react";
 import "./App.css";
-// import Register from "./Register";
-import Login from "./Login";
 import PadawanDashboard from "./PadawanDashboard";
-import AdminShowAllCourses from "./AdminShowAllCourses";
-import AdminShowAllStudents from "./AdminShowAllStudents";
 import AdminContainer from "./AdminContainer";
+import LoginRegisterForm from "./LoginRegisterForm";
 
 class App extends React.Component {
   constructor() {
@@ -34,15 +31,23 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
+
     // if the response is cleared
-    if (parsedLoginResponse.status.code === 201) {
+    if (parsedLoginResponse.data.full_name === "admin") {
       this.setState({
-        loggedIn: true
-        // loggedInPadawan: parsedLoginResponse.data.full_name
+        isAdmin: true,
+        loggedInPadawan: this.state.loggedInPadawan
       });
     } else {
-      console.log("Registration Failed:");
-      console.log(parsedLoginResponse);
+      // if the reponse is good
+      if (response.ok) {
+        this.setState({
+          loggedIn: true,
+          loggedInPadawan: parsedLoginResponse.data
+        });
+      } else {
+        console.log(parsedLoginResponse);
+      }
     }
   };
 
@@ -62,7 +67,6 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
-    console.log(parsedLoginResponse.data);
 
     if (parsedLoginResponse.data.full_name === "admin") {
       this.setState({
@@ -80,10 +84,10 @@ class App extends React.Component {
         console.log(parsedLoginResponse);
       }
     }
-  }
+  };
 
-   adminLogOut = async () => {
-        const response = await fetch(
+  adminLogOut = async () => {
+    const response = await fetch(
       // fetch the response from the API
       process.env.REACT_APP_API_URL + "/api/v1/padawans/logout",
       {
@@ -97,21 +101,18 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
-    console.log(parsedLoginResponse);
-    console.log(this.state);
 
-    if (parsedLoginResponse.status.code === 200) {   
+    if (parsedLoginResponse.status.code === 200) {
       this.setState({
         isAdmin: false
       });
-      console.log(this.state)
     } else {
       console.log(parsedLoginResponse);
     }
-  }
+  };
 
   padawanLogOut = async () => {
-        const response = await fetch(
+    const response = await fetch(
       // fetch the response from the API
       process.env.REACT_APP_API_URL + "/api/v1/padawans/logout",
       {
@@ -125,14 +126,12 @@ class App extends React.Component {
       }
     );
     const parsedLoginResponse = await response.json();
-    console.log(parsedLoginResponse);
-    console.log(this.state);
 
-    if (parsedLoginResponse.status.code === 200) {   
+    if (parsedLoginResponse.status.code === 200) {
       this.setState({
         loggedIn: false
       });
-      console.log(this.state)
+      console.log(this.state);
     } else {
       console.log(parsedLoginResponse);
     }
@@ -140,17 +139,30 @@ class App extends React.Component {
 
   render() {
     const componentToRender = () => {
+      // if they are the admin, bring them to the admin dashboard
       if (this.state.isAdmin) {
-        return <AdminContainer loggedInPadawan={this.state.loggedInPadawan} adminLogOut={this.adminLogOut}/>;
+        return (
+          <AdminContainer
+            loggedInPadawan={this.state.loggedInPadawan}
+            adminLogOut={this.adminLogOut}
+          />
+        );
       } else if (this.state.loggedIn) {
         return (
-          <PadawanDashboard loggedInPadawan={this.state.loggedInPadawan} padawanLogOut={this.padawanLogOut}/>
+          // if they are a padawan, bring them to the padawan dashboard
+          <PadawanDashboard
+            loggedInPadawan={this.state.loggedInPadawan}
+            padawanLogOut={this.padawanLogOut}
+          />
         );
       } else {
-        return <Login login={this.login} />;
+        return (
+          // bring them to the loginRegister form
+          <LoginRegisterForm login={this.login} register={this.register} />
+        );
       }
     };
-
+    // invoke method that shows which component to render
     return <div className="App">{componentToRender()}</div>;
   }
 }

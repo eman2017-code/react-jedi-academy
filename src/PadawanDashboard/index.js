@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import PadawanCourseList from "../PadawanCourseList";
-import PadawanShowCourse from "../PadawanShowCourse";
-import { Button } from "semantic-ui-react";
+import PadawanEnrollment from "../PadawanEnrollment";
 
 class PadawanDashboard extends Component {
   constructor(props) {
@@ -11,13 +10,18 @@ class PadawanDashboard extends Component {
       loggedInPadawan: this.props.loggedInPadawan
     };
   }
+
   render() {
-    return (
-      <div>
-        <PadawanCourseList loggedInPadawan={this.state.loggedInPadawan} />
-        <Button onClick={this.props.padawanLogOut}>Log Out</Button>
-      </div>
-    );
+    return [
+      <PadawanCourseList
+        key="one"
+        loggedInPadawan={this.state.loggedInPadawan}
+      />,
+      <PadawanEnrollment
+        key="two"
+        loggedInPadawan={this.state.loggedInPadawan}
+      />
+    ];
   }
 }
 
