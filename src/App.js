@@ -43,7 +43,9 @@ class App extends React.Component {
       });
     } else {
       // if the reponse is good
-      if (parsedLoginResponse.status.code === 200) {
+      console.log("parsedLoginResponse.status.code");
+      console.log(parsedLoginResponse.status.code);
+      if (response.ok) {
         this.setState({
           loggedIn: true,
           loggedInPadawan: parsedLoginResponse.data
