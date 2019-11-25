@@ -7,22 +7,19 @@ import { Button, Form, Label, Modal, Header } from "semantic-ui-react";
 
 class AdminContainer extends Component {
   constructor(props) {
-  	console.log()
     super(props);
 
     this.state = {
       padawans: [],
       courses: [],
       addCourse: false,
-      editCourseModal: false,
       courseToEdit: {
         title: '',
         description: '',
-        start_date: ''
-      }
-      // idOfCourseToEdit: -1
-
-
+        start_date: '',
+        id: ''
+      },
+      editCourseModal: false,
     };
   }
 
@@ -137,23 +134,37 @@ class AdminContainer extends Component {
     console.log(courseToEdit);
     this.setState({
       editCourseModal: true,
-      idOfCourseToEdit: idOfCourseToEdit,
+      idOfCourseToEdit: courseToEdit.id,
       courseToEdit: {
         ...courseToEdit
       }
     })
   }
 
-  handleEdit
+  handleEditChange = (e) => {
+
+    this.setState({
+      courseToEdit: {
+        ...this.state.courseToEdit,
+        [e.currentTarget.title]: e.currentTarget.value
+      }
+    })
+  }
 
   updateCourse = async (newCourseInfo) => {
+
+    console.log("newCourseInfo >>>", newCourseInfo);
+    // e.preventDefault()
+    // console.log(e);
     // update the course 
+    
     try {
         // hit our API to actually update it 
         const url = process.env.REACT_APP_API_URL + '/api/v1/courses/' + this.state.idOfCourseToEdit
 
         const updateResponse = await fetch(url, {
           method: 'PUT',
+          credentials: 'include',
           body: JSON.stringify(newCourseInfo),
           headers: {
             'Content-Type': 'application/json'
@@ -162,9 +173,7 @@ class AdminContainer extends Component {
 
         const updateResponseParsed = await updateResponse.json()
 
-        // updating data on screen (let's be functional about it)
-        // iterate over courses in state, replace the pertient course
-        // with the data from the updateResponse 
+        console.log("updateResponseParsed >>> ",updateResponseParsed);
         const newCourseArrayWithUpdate = this.state.courses.map((course) => {
           if(course.id === updateResponseParsed.data.id ) {
             // replace it if it's that one course
@@ -174,6 +183,7 @@ class AdminContainer extends Component {
         })
 
         this.setState ({
+          editCourseModal: false,
           courses: newCourseArrayWithUpdate
         })
 
@@ -188,7 +198,7 @@ class AdminContainer extends Component {
 
   closeModal = () => {
     this.setState({
-      idOfCourseToEdit: -1
+      editCourseModal: false
     })
   }
 

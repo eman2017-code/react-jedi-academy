@@ -8,7 +8,6 @@ class EditCourseModal extends React.Component {
       title: '',
       description: '',
       start_date: ''
-
     }
   }
 
@@ -45,7 +44,7 @@ render () {
       <Header>Edit Course</Header>
       <Modal.Content>
 
-        <Form onSubmit={this.props.updateCourse}>
+        <Form onSubmit={this.handleSubmit}>
           <Label> Title: </Label> 
           <Form.Input 
           type="text" 
@@ -67,10 +66,10 @@ render () {
           type="text" 
           name="start_date" 
           value={this.state.start_date} 
-          onChange={this.props.handleChange}
+          onChange={this.handleChange}
           /> 
 
-        <Button onSubmit={this.handleSubmit} type="submit">Submit</Button> 
+        <Button type="submit">Submit</Button> 
 
         </Form> 
  
