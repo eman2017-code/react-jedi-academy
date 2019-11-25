@@ -36,14 +36,6 @@ class PadawanEnrollment extends Component {
     }
   };
 
-  showAllCourses() {
-    const courses = this.state.courses.map(course => {
-      return <List.Item key={course.id}> {courses.title} </List.Item>;
-    });
-
-    return <List bulleted> {courses} </List>;
-  }
-
   render() {
     return <Button onClick={this.getCourses}>Select Your Courses!</Button>;
   }
