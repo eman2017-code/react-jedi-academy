@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Button, List } from "semantic-ui-react";
-import AdminShowAllCourses from "../AdminShowAllCourses";
+import EnrollmentOfCourses from "../EnrollmentOfCourses";
 
 class PadawanEnrollment extends Component {
   constructor() {
@@ -44,7 +44,7 @@ class PadawanEnrollment extends Component {
   render() {
     return (
       <div>
-        <AdminShowAllCourses courses={this.state.courses} />
+        <EnrollmentOfCourses courses={this.state.courses} />
       </div>
     );
 
