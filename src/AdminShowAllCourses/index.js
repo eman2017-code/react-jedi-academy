@@ -2,7 +2,6 @@ import React from 'react';
 import { Card, Button } from 'semantic-ui-react';
 
 function AdminShowAllCourses(props){
-  console.log("this is props in <AdminShowAllCourses/> >>> ", props)
   const courses = props.courses.map((course) => {
     return (
         <Card key={course.id}>
@@ -13,7 +12,7 @@ function AdminShowAllCourses(props){
           </Card.Content>
           <Card.Content extra>
             <Button onClick={() => props.deleteCourse(course.id)}>Delete Course</Button>
-            <Button>Edit Course</Button>
+            <Button onClick={() => props.editCourse(course.id)}>Edit Course</Button>
           </Card.Content>
         </Card>
         )

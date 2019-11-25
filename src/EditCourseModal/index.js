@@ -2,8 +2,8 @@ import React, {Component} from 'react'
 import { Form, Button, Label, Header, Modal } from 'semantic-ui-react';
 
 class EditCourseModal extends React.Component {
-  constructor(){
-    super()
+  constructor(props){
+    super(props)
     this.state = {
       title: '',
       description: '',
@@ -13,9 +13,16 @@ class EditCourseModal extends React.Component {
   }
 
   componentDidMount() {
+
+    console.log("this is props on CDM modal>> ");
+    console.log(this.props.courseToEdit);
     // this does add a few extra properties to state
     // component did mount mounts data to form 
-    this.setState(this.props.CourseToEdit)
+    this.setState({
+      title: this.props.courseToEdit.title,
+      description: this.props.courseToEdit.description,
+      start_date: this.props.courseToEdit.start_date
+    })
   }
 
   handleChange = (event) => {
@@ -30,14 +37,15 @@ class EditCourseModal extends React.Component {
   }
 
 render () {
+  console.log("this is props on render EditCourseModal");
   console.log(this.props);
   return(
 
-    <Modal open={true} closeIcon>
+    <Modal open={this.props.editModalOpen} closeIcon onClose={this.props.closeModal}>
       <Header>Edit Course</Header>
       <Modal.Content>
 
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.props.updateCourse}>
           <Label> Title: </Label> 
           <Form.Input 
           type="text" 
@@ -59,7 +67,7 @@ render () {
           type="text" 
           name="start_date" 
           value={this.state.start_date} 
-          onChange={this.handleChange}
+          onChange={this.props.handleChange}
           /> 
 
         <Button onSubmit={this.handleSubmit} type="submit">Submit</Button> 
