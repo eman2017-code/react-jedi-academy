@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Button, List } from "semantic-ui-react";
+import AdminShowAllCourses from "../AdminShowAllCourses";
 
 class PadawanEnrollment extends Component {
   constructor() {
@@ -9,6 +10,10 @@ class PadawanEnrollment extends Component {
       // set courses to be an empty array
       courses: []
     };
+  }
+
+  componentDidMount() {
+    this.getCourses();
   }
 
   // create a method that loops though all the courses
@@ -37,7 +42,13 @@ class PadawanEnrollment extends Component {
   };
 
   render() {
-    return <Button onClick={this.getCourses}>Select Your Courses!</Button>;
+    return (
+      <div>
+        <AdminShowAllCourses courses={this.state.courses} />
+      </div>
+    );
+
+    // <Button onClick={this.getCourses}>Select Your Courses!</Button>;
   }
 }
 
