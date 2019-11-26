@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, Button } from "semantic-ui-react";
+import { Card } from "semantic-ui-react";
 
 function PadawanShowCourse(props) {
   const padawanCourses = props.padawanCourses.map(padawanCourse => {

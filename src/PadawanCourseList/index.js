@@ -42,45 +42,47 @@ class PadawanCourseList extends Component {
   // show the courses on the screen that the user is taking
   render() {
     return (
-      <div>
+      <div className="ui centered cards">
         <div>
-          <Header as="h2">
-            <Image
-              circular
-              src="https://react.semantic-ui.com/images/avatar/large/patrick.png"
-            />{" "}
-            JEDI ACADEMY - PADAWAN DASHBOARD
-          </Header>
-        </div>
-        <br></br>
-        <br></br>
-        <br></br>
-        <div>
-          <Card>
-            <Image
-              src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
-              wrapped
-              ui={false}
-            />
-            <Card.Content>
-              <Card.Header>{this.props.loggedInPadawan.full_name}</Card.Header>
-              <Card.Description>Young Jedi in training</Card.Description>
-            </Card.Content>
-            <Card.Content extra>
-              <Button onClick={this.getCoursesPadawanIsIn}>
-                <Icon name="book" />
-                View Classes
-              </Button>
-            </Card.Content>
-          </Card>
-        </div>
-        <div>
-          {this.state.showCourse ? (
-            <PadawanShowCourse
-              padawanCourses={this.state.courses}
-              getPadawansACourseIsAttachedTo={this.state.courses}
-            />
-          ) : null}
+          <div>
+            <Header as="h1">
+              <Image
+                circular
+                src="https://react.semantic-ui.com/images/avatar/large/patrick.png"
+              />{" "}
+              JEDI ACADEMY - PADAWAN DASHBOARD
+            </Header>
+          </div>
+          <br></br>
+          <div>
+            <Card>
+              <Image
+                src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
+                wrapped
+                ui={false}
+              />
+              <Card.Content>
+                <Card.Header>
+                  {this.props.loggedInPadawan.full_name}
+                </Card.Header>
+                <Card.Description>Young Jedi in training</Card.Description>
+              </Card.Content>
+              <Card.Content extra>
+                <Button onClick={this.getCoursesPadawanIsIn}>
+                  <Icon name="book" />
+                  View Classes
+                </Button>
+              </Card.Content>
+            </Card>
+          </div>
+          <div>
+            {this.state.showCourse ? (
+              <PadawanShowCourse
+                padawanCourses={this.state.courses}
+                getPadawansACourseIsAttachedTo={this.state.courses}
+              />
+            ) : null}
+          </div>
         </div>
       </div>
     );

@@ -3,7 +3,7 @@ import AdminShowAllStudents from "../AdminShowAllStudents";
 import AdminShowAllCourses from "../AdminShowAllCourses";
 import AdminAddCourse from "../AdminAddCourse";
 import EditCourseModal from "../EditCourseModal";
-import { Button, Form, Label, Modal, Header, Grid, Image } from "semantic-ui-react";
+import { Button, Header, Grid, Image } from "semantic-ui-react";
 
 class AdminContainer extends Component {
   constructor(props) {
@@ -194,39 +194,39 @@ class AdminContainer extends Component {
         <br></br>
         <br></br>
         <br></br>
-      <Grid 
-        columns={2}  
-        textAlign='center' 
-        style={{ height: '100%' }} 
-        verticalAlign='top' 
-        stackable
-      >
-      <Grid.Column>
-        <Header as="h2">JEDI CURRICULUM</Header>
-        <AdminShowAllCourses
-          courses={this.state.courses}
-          deleteCourse={this.deleteCourse}
-          editCourse={this.editCourse}
-        />
-        <Button onClick={this.loadForm}> Add A Course </Button>
-          {this.state.addCourse ? (
-            <AdminAddCourse addCourse={this.addCourse} />
-          ) : null}
-        </Grid.Column>
-        <Grid.Column>
-        <Header as="h2">ENROLLED PADAWANS</Header>
-        <AdminShowAllStudents padawans={this.state.padawans} />
-          {this.state.editCourseModal ? (
-            <EditCourseModal
-              editModalOpen={this.state.editCourseModal}
-              updateCourse={this.updateCourse}
-              courseToEdit={this.state.courseToEdit}
+        <Grid
+          columns={2}
+          textAlign="center"
+          style={{ height: "100%" }}
+          verticalAlign="top"
+          stackable
+        >
+          <Grid.Column>
+            <Header as="h2">JEDI CURRICULUM</Header>
+            <AdminShowAllCourses
+              courses={this.state.courses}
+              deleteCourse={this.deleteCourse}
+              editCourse={this.editCourse}
             />
-          ) : null}
-        <Button onClick={this.props.adminLogOut}> Log Out </Button>
-         </Grid.Column>
-      </Grid>
-    </div>
+            <Button onClick={this.loadForm}> Add A Course </Button>
+            {this.state.addCourse ? (
+              <AdminAddCourse addCourse={this.addCourse} />
+            ) : null}
+          </Grid.Column>
+          <Grid.Column>
+            <Header as="h2">ENROLLED PADAWANS</Header>
+            <AdminShowAllStudents padawans={this.state.padawans} />
+            {this.state.editCourseModal ? (
+              <EditCourseModal
+                editModalOpen={this.state.editCourseModal}
+                updateCourse={this.updateCourse}
+                courseToEdit={this.state.courseToEdit}
+              />
+            ) : null}
+            <Button onClick={this.props.adminLogOut}> Log Out </Button>
+          </Grid.Column>
+        </Grid>
+      </div>
     );
   }
 }

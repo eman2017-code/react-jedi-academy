@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Form, Button, Label, Header, Modal } from "semantic-ui-react";
 
 class EditCourseModal extends React.Component {

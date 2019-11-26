@@ -1,14 +1,5 @@
 import React, { Component } from "react";
-import {
-  Form,
-  Button,
-  Label,
-  Header,
-  Image,
-  Divider,
-  Grid,
-  Segment
-} from "semantic-ui-react";
+import { Form, Button, Label, Header, Image, Divider } from "semantic-ui-react";
 
 class LoginRegisterForm extends Component {
   constructor() {
