@@ -204,27 +204,27 @@ class AdminContainer extends Component {
         >
           <Grid.Column>
             <Header as="h2">JEDI CURRICULUM</Header>
-            <AdminShowAllCourses
-              courses={this.state.courses}
-              deleteCourse={this.deleteCourse}
-              editCourse={this.editCourse}
-            />
-            <Button onClick={this.loadForm}> Add A Course </Button>
-            {this.state.addCourse ? (
+              <AdminShowAllCourses
+                courses={this.state.courses}
+                deleteCourse={this.deleteCourse}
+                editCourse={this.editCourse}
+              />
+              <Button onClick={this.loadForm}> Add A Course </Button>
+              {this.state.addCourse ? (
               <AdminAddCourse addCourse={this.addCourse} />
-            ) : null}
+              ) : null}
           </Grid.Column>
           <Grid.Column>
-            <Header as="h2">ENROLLED PADAWANS</Header>
-            <AdminShowAllStudents padawans={this.state.padawans} />
-            {this.state.editCourseModal ? (
+              <Header as="h2">ENROLLED PADAWANS</Header>
+              <AdminShowAllStudents padawans={this.state.padawans} />
+              {this.state.editCourseModal ? (
               <EditCourseModal
                 editModalOpen={this.state.editCourseModal}
                 updateCourse={this.updateCourse}
                 courseToEdit={this.state.courseToEdit}
               />
-            ) : null}
-            <Button onClick={this.props.adminLogOut}> Log Out </Button>
+              ) : null}
+              <Button onClick={this.props.adminLogOut}> Log Out </Button>
           </Grid.Column>
         </Grid>
       </div>
