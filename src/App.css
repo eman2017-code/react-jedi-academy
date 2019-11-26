@@ -27,3 +27,7 @@ form {
   border: 3px solid black;
   padding: 5%;
 }
+
+body {
+  background: linear-gradient(#ffffff, #000000);
+}
