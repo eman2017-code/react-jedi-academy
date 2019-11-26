@@ -1,5 +1,14 @@
 import React, { Component } from "react";
-import { Form, Button, Label, Header, Image, Divider, Grid, Segment } from "semantic-ui-react";
+import {
+  Form,
+  Button,
+  Label,
+  Header,
+  Image,
+  Divider,
+  Grid,
+  Segment
+} from "semantic-ui-react";
 
 class LoginRegisterForm extends Component {
   constructor() {
@@ -51,12 +60,16 @@ class LoginRegisterForm extends Component {
       <div>
         <div>
           <Header>
-          <h1> Jedi Academy </h1>
-          </Header> 
-          <Image src='http://www.jemome.com/cdn/2015/01/star-wars-jedi-academy-logo_317354.png' size='large' circular centered />
+            <h1> Jedi Academy </h1>
+          </Header>
+          <Image
+            src="http://www.jemome.com/cdn/2015/01/star-wars-jedi-academy-logo_317354.png"
+            size="medium"
+            circular
+            centered
+          />
         </div>
         <div className="LoginRegisterForm">
-
           <Form onSubmit={this.handleSubmit}>
             {this.state.action === "register" ? (
               <React.Fragment>
@@ -68,43 +81,43 @@ class LoginRegisterForm extends Component {
                   value={this.state.email}
                   onChange={this.handleChange}
                 ></Form.Input>
-            </React.Fragment>
+              </React.Fragment>
             ) : null}
 
             <Label>Full Name:</Label>
-              <Divider hidden />
-                <Form.Input
-                  type="text"
-                  name="full_name"
-                  value={this.state.full_name}
-                  onChange={this.handleChange}
-                ></Form.Input>
+            <Divider hidden />
+            <Form.Input
+              type="text"
+              name="full_name"
+              value={this.state.full_name}
+              onChange={this.handleChange}
+            ></Form.Input>
 
-              <Label>Password:</Label>
-              <Divider hidden />
-                <Form.Input
-                  type="password"
-                  name="password"
-                  value={this.state.password}
-                  onChange={this.handleChange}
-                ></Form.Input>
-              <Divider hidden />
-              <Button type="Submit">
-                {this.state.action === "register" ? "Register" : "Login"}
-              </Button>
+            <Label>Password:</Label>
+            <Divider hidden />
+            <Form.Input
+              type="password"
+              name="password"
+              value={this.state.password}
+              onChange={this.handleChange}
+            ></Form.Input>
+            <Divider hidden />
+            <Button type="Submit">
+              {this.state.action === "register" ? "Register" : "Login"}
+            </Button>
           </Form>
           {this.state.action === "register" ? (
-          <small>
-            Already have an account? Log in{" "}
-            <span onClick={this.switchForm}>here</span>
-          </small>
-        ) : (
-          <small>
-            Need an account? Sign up{" "}
-            <span onClick={this.switchForm}>here</span>!
-          </small>
-        )}
-        </div> 
+            <small>
+              Already have an account? Log in{" "}
+              <span onClick={this.switchForm}>here</span>
+            </small>
+          ) : (
+            <small>
+              Need an account? Sign up{" "}
+              <span onClick={this.switchForm}>here</span>!
+            </small>
+          )}
+        </div>
       </div>
     );
   }
