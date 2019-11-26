@@ -132,7 +132,6 @@ class App extends React.Component {
       this.setState({
         loggedIn: false
       });
-      console.log(this.state);
     } else {
       console.log(parsedLoginResponse);
     }
