@@ -43,17 +43,8 @@ class PadawanCourseList extends Component {
   render() {
     return (
       <div className="ui centered cards">
+      <Header as="h2">JEDI IN TRAINING</Header>
         <div>
-          <div>
-            <Header as="h1">
-              <Image
-                circular
-                src="https://react.semantic-ui.com/images/avatar/large/patrick.png"
-              />{" "}
-              JEDI ACADEMY - PADAWAN DASHBOARD
-            </Header>
-          </div>
-          <br></br>
           <div>
             <Card>
               <Image
