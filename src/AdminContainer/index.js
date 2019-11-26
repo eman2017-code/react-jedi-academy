@@ -24,6 +24,7 @@ class AdminContainer extends Component {
   }
 
   componentDidMount() {
+    // once the component mounts, invoke these methods right away
     this.getStudents();
     this.getCourses();
   }
