@@ -3,7 +3,7 @@ import AdminShowAllStudents from "../AdminShowAllStudents";
 import AdminShowAllCourses from "../AdminShowAllCourses";
 import AdminAddCourse from "../AdminAddCourse";
 import EditCourseModal from "../EditCourseModal";
-import { Button, Form, Label, Modal, Header } from "semantic-ui-react";
+import { Button, Form, Label, Modal, Header, Grid, Image } from "semantic-ui-react";
 
 class AdminContainer extends Component {
   constructor(props) {
@@ -182,19 +182,40 @@ class AdminContainer extends Component {
   render() {
     return (
       <div>
-        <AdminShowAllStudents padawans={this.state.padawans} />
+        <div>
+          <Header as="h2">
+            <Image
+              circular
+              src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+            />{" "}
+            JEDI ACADEMY - ADMIN DASHBOARD
+          </Header>
+        </div>
+        <br></br>
+        <br></br>
+        <br></br>
+      <Grid 
+        columns={2}  
+        textAlign='center' 
+        style={{ height: '100%' }} 
+        verticalAlign='top' 
+        stackable
+      >
+      <Grid.Column>
+        <Header as="h2">JEDI CURRICULUM</Header>
         <AdminShowAllCourses
           courses={this.state.courses}
           deleteCourse={this.deleteCourse}
           editCourse={this.editCourse}
         />
         <Button onClick={this.loadForm}> Add A Course </Button>
-        <div>
           {this.state.addCourse ? (
             <AdminAddCourse addCourse={this.addCourse} />
           ) : null}
-        </div>
-        <div>
+        </Grid.Column>
+        <Grid.Column>
+        <Header as="h2">ENROLLED PADAWANS</Header>
+        <AdminShowAllStudents padawans={this.state.padawans} />
           {this.state.editCourseModal ? (
             <EditCourseModal
               editModalOpen={this.state.editCourseModal}
@@ -202,9 +223,10 @@ class AdminContainer extends Component {
               courseToEdit={this.state.courseToEdit}
             />
           ) : null}
-        </div>
         <Button onClick={this.props.adminLogOut}> Log Out </Button>
-      </div>
+         </Grid.Column>
+      </Grid>
+    </div>
     );
   }
 }
