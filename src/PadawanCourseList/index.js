@@ -43,12 +43,12 @@ class PadawanCourseList extends Component {
   render() {
     return (
       <div className="ui centered cards">
-      <Header as="h2">JEDI IN TRAINING</Header>
+        <Header as="h2">JEDI IN TRAINING</Header>
         <div>
           <div>
             <Card>
               <Image
-                src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
+                src="https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/27d50ee6-198c-4501-b5fc-ce874c1d84cf/d12iveq-33f8340e-7374-478c-88dd-4019b6d2efbb.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7InBhdGgiOiJcL2ZcLzI3ZDUwZWU2LTE5OGMtNDUwMS1iNWZjLWNlODc0YzFkODRjZlwvZDEyaXZlcS0zM2Y4MzQwZS03Mzc0LTQ3OGMtODhkZC00MDE5YjZkMmVmYmIuanBnIn1dXSwiYXVkIjpbInVybjpzZXJ2aWNlOmZpbGUuZG93bmxvYWQiXX0.vWyqAXph7jtjXhGaSRORIoOufZWIgXKTbdxBOkzFwNE"
                 wrapped
                 ui={false}
               />
